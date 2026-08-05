@@ -1,0 +1,78 @@
+[
+  {
+    "name": "AFC Bournemouth",
+    "logo": "clubs/afc_bournemouth.png"
+  },
+  {
+    "name": "Arsenal",
+    "logo": "clubs/Arsenal.png"
+  },
+  {
+    "name": "Aston Villa",
+    "logo": "clubs/Aston_Villa.png"
+  },
+  {
+    "name": "Brentford",
+    "logo": "clubs/Brentford.png"
+  },
+  {
+    "name": "Brighton & Hove Albion",
+    "logo": "clubs/Brighton.png"
+  },
+  {
+    "name": "Burnley",
+    "logo": "clubs/Burnley.png"
+  },
+  {
+    "name": "Chelsea",
+    "logo": "clubs/Chelsea.png"
+  },
+  {
+    "name": "Crystal Palace",
+    "logo": "clubs/Crystal_Palace.png"
+  },
+  {
+    "name": "Everton",
+    "logo": "clubs/Everton.png"
+  },
+  {
+    "name": "Fulham",
+    "logo": "clubs/Fulham.png"
+  },
+  {
+    "name": "Leeds United",
+    "logo": "clubs/Leeds_United.png"
+  },
+  {
+    "name": "Liverpool",
+    "logo": "clubs/Liverpool.png"
+  },
+  {
+    "name": "Manchester City",
+    "logo": "clubs/Manchester_City.png"
+  },
+  {
+    "name": "Manchester United",
+    "logo": "clubs/Manchester_United.png"
+  },
+  {
+    "name": "Newcastle United",
+    "logo": "clubs/Newcastle_United.png"
+  },
+  {
+    "name": "Nottingham Forest",
+    "logo": "clubs/Nottingham_Forest.png"
+  },
+  {
+    "name": "Tottenham Hotspur",
+    "logo": "clubs/Tottenham_Hotspur.png"
+  },
+  {
+    "name": "West Ham United",
+    "logo": "clubs/West_Ham_United.png"
+  },
+  {
+    "name": "Wolverhampton Wanderers",
+    "logo": "clubs/Wolverhampton.png"
+  }
+]

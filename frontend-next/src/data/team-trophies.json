@@ -1,0 +1,157 @@
+{
+  "57": {
+    "name": "Arsenal",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 13 },
+      { "title": "Кубок Англии (FA Cup)", "count": 14 },
+      { "title": "Кубок английской лиги", "count": 2 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 1 }
+    ]
+  },
+  "65": {
+    "name": "Manchester City",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 10 },
+      { "title": "Кубок Англии (FA Cup)", "count": 7 },
+      { "title": "Кубок английской лиги", "count": 8 },
+      { "title": "Лига чемпионов УЕФА", "count": 1 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 1 }
+    ]
+  },
+  "66": {
+    "name": "Manchester United",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 20 },
+      { "title": "Кубок Англии (FA Cup)", "count": 13 },
+      { "title": "Кубок английской лиги", "count": 6 },
+      { "title": "Лига чемпионов УЕФА", "count": 3 },
+      { "title": "Лига Европы УЕФА", "count": 1 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 1 }
+    ]
+  },
+  "58": {
+    "name": "Aston Villa",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 7 },
+      { "title": "Кубок Англии (FA Cup)", "count": 7 },
+      { "title": "Кубок английской лиги", "count": 5 },
+      { "title": "Кубок европейских чемпионов", "count": 1 }
+    ]
+  },
+  "64": {
+    "name": "Liverpool",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 20 },
+      { "title": "Кубок Англии (FA Cup)", "count": 8 },
+      { "title": "Кубок английской лиги", "count": 10 },
+      { "title": "Лига чемпионов УЕФА / Кубок европейских чемпионов", "count": 6 },
+      { "title": "Лига Европы УЕФА / Кубок УЕФА", "count": 3 }
+    ]
+  },
+  "1044": {
+    "name": "AFC Bournemouth",
+    "trophies": []
+  },
+  "71": {
+    "name": "Sunderland",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 6 },
+      { "title": "Кубок Англии (FA Cup)", "count": 2 }
+    ]
+  },
+  "397": {
+    "name": "Brighton & Hove Albion",
+    "trophies": []
+  },
+  "402": {
+    "name": "Brentford",
+    "trophies": []
+  },
+  "61": {
+    "name": "Chelsea",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 6 },
+      { "title": "Кубок Англии (FA Cup)", "count": 8 },
+      { "title": "Кубок английской лиги", "count": 5 },
+      { "title": "Лига чемпионов УЕФА", "count": 2 },
+      { "title": "Лига Европы УЕФА", "count": 2 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 2 }
+    ]
+  },
+  "63": {
+    "name": "Fulham",
+    "trophies": []
+  },
+  "67": {
+    "name": "Newcastle United",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 4 },
+      { "title": "Кубок Англии (FA Cup)", "count": 6 },
+      { "title": "Кубок английской лиги", "count": 1 }
+    ]
+  },
+  "62": {
+    "name": "Everton",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 9 },
+      { "title": "Кубок Англии (FA Cup)", "count": 5 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 1 }
+    ]
+  },
+  "341": {
+    "name": "Leeds United",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 3 },
+      { "title": "Кубок Англии (FA Cup)", "count": 1 },
+      { "title": "Кубок английской лиги", "count": 1 }
+    ]
+  },
+  "354": {
+    "name": "Crystal Palace",
+    "trophies": [
+      { "title": "Кубок Англии (FA Cup)", "count": 1 }
+    ]
+  },
+  "351": {
+    "name": "Nottingham Forest",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 1 },
+      { "title": "Кубок английской лиги", "count": 2 },
+      { "title": "Кубок европейских чемпионов", "count": 2 }
+    ]
+  },
+  "73": {
+    "name": "Tottenham Hotspur",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 2 },
+      { "title": "Кубок Англии (FA Cup)", "count": 8 },
+      { "title": "Кубок английской лиги", "count": 4 },
+      { "title": "Лига Европы Конференций УЕФА", "count": 1 },
+      { "title": "Кубок УЕФА", "count": 2 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 1 }
+    ]
+  },
+  "563": {
+    "name": "West Ham United",
+    "trophies": [
+      { "title": "Кубок Англии (FA Cup)", "count": 3 },
+      { "title": "Лига Европы Конференций УЕФА", "count": 1 },
+      { "title": "Кубок обладателей кубков УЕФА", "count": 1 }
+    ]
+  },
+  "328": {
+    "name": "Burnley",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 2 },
+      { "title": "Кубок Англии (FA Cup)", "count": 1 }
+    ]
+  },
+  "76": {
+    "name": "Wolverhampton Wanderers",
+    "trophies": [
+      { "title": "Чемпионат Англии", "count": 3 },
+      { "title": "Кубок Англии (FA Cup)", "count": 4 },
+      { "title": "Кубок английской лиги", "count": 2 }
+    ]
+  }
+}
