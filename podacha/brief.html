@@ -1,0 +1,319 @@
+<title>Запуск Своей подачи</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --paper:#FBFAFC;
+    --card:#FFFFFF;
+    --card-2:#F4F4F8;
+    --ink:#16161B;
+    --ink-2:#44444F;
+    --muted:#82828E;
+    --hair:rgba(22,22,27,.10);
+    --hair-2:rgba(22,22,27,.06);
+    --accent:#5A5BE0;
+    --accent-soft:rgba(90,91,224,.09);
+    --amber:#B4711A;
+    --amber-soft:rgba(180,113,26,.10);
+    --green:#26855C;
+    --shadow:0 4px 20px rgba(30,28,55,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#121216;
+      --card:#1B1B21;
+      --card-2:#23232B;
+      --ink:#F0F0F4;
+      --ink-2:#C3C3CD;
+      --muted:#8C8C98;
+      --hair:rgba(255,255,255,.13);
+      --hair-2:rgba(255,255,255,.07);
+      --accent:#9192F7;
+      --accent-soft:rgba(145,146,247,.14);
+      --amber:#E0A355;
+      --amber-soft:rgba(224,163,85,.13);
+      --green:#4FC48C;
+      --shadow:0 4px 20px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#121216;
+    --card:#1B1B21;
+    --card-2:#23232B;
+    --ink:#F0F0F4;
+    --ink-2:#C3C3CD;
+    --muted:#8C8C98;
+    --hair:rgba(255,255,255,.13);
+    --hair-2:rgba(255,255,255,.07);
+    --accent:#9192F7;
+    --accent-soft:rgba(145,146,247,.14);
+    --amber:#E0A355;
+    --amber-soft:rgba(224,163,85,.13);
+    --green:#4FC48C;
+    --shadow:0 4px 20px rgba(0,0,0,.4);
+  }
+
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Onest", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased;
+    font-size:16px;line-height:1.6;
+  }
+  *{box-sizing:border-box}
+  .wrap{max-width:760px;margin:0 auto;padding-left:20px;padding-right:20px;padding-block:44px 72px}
+  @media (max-width:560px){ .wrap{padding-left:16px;padding-right:16px;padding-block:32px 56px} }
+
+  .eyebrow{
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+    font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:18px;
+  }
+  .eyebrow b{color:var(--accent);font-weight:700}
+  .eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--muted);font-style:normal;display:block}
+
+  h1{
+    margin:0 0 14px;font-size:clamp(30px,5.6vw,44px);line-height:1.06;
+    font-weight:800;letter-spacing:-.035em;text-wrap:balance;
+  }
+  .sub{margin:0 0 26px;font-size:clamp(17px,2.4vw,19px);line-height:1.5;color:var(--ink-2);max-width:56ch}
+  .sub b{color:var(--ink);font-weight:600}
+
+  h2{
+    margin:44px 0 12px;font-size:21px;font-weight:700;letter-spacing:-.025em;line-height:1.2;
+    padding-top:20px;border-top:1px solid var(--hair);
+  }
+  h2:first-of-type{border-top:0;padding-top:0}
+  h3{margin:26px 0 8px;font-size:16px;font-weight:700;letter-spacing:-.015em}
+  p{margin:0 0 14px;color:var(--ink-2)}
+  p.lead{color:var(--ink);font-weight:500}
+  strong{color:var(--ink);font-weight:600}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+
+  ul{margin:0 0 16px;padding-left:0;list-style:none}
+  ul li{position:relative;padding-left:20px;margin-bottom:8px;color:var(--ink-2)}
+  ul li::before{
+    content:"";position:absolute;left:4px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--accent);
+  }
+
+  .callout{
+    background:var(--accent-soft);border-radius:16px;padding:16px 18px;margin:0 0 18px;
+    font-size:15px;line-height:1.55;color:var(--ink-2);
+  }
+  .callout b{color:var(--ink)}
+  .callout.warn{background:var(--amber-soft)}
+  .callout.warn b{color:var(--amber)}
+
+  .cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:18px}
+  .cards article{
+    background:var(--card);border:1px solid var(--hair-2);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow);
+  }
+  .cards h4{margin:0 0 5px;font-size:15px;font-weight:700;letter-spacing:-.015em}
+  .cards p{margin:0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+  .cards .who{
+    display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:7px;
+  }
+
+  .tablewrap{overflow-x:auto;margin-bottom:18px;border-radius:14px;border:1px solid var(--hair-2)}
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);min-width:440px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--hair-2);vertical-align:top}
+  th{font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--card-2)}
+  tr:last-child td{border-bottom:0}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600;color:var(--ink)}
+  td.goal{color:var(--green);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .msg{
+    background:var(--card);border:1px solid var(--hair-2);border-left:3px solid var(--accent);
+    border-radius:0 14px 14px 0;padding:13px 16px;margin-bottom:9px;box-shadow:var(--shadow);
+  }
+  .msg b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:3px}
+  .msg span{font-size:13px;color:var(--muted);line-height:1.45}
+
+  .steps{counter-reset:step;margin:0 0 18px;padding:0;list-style:none}
+  .steps li{
+    counter-increment:step;position:relative;padding-left:44px;margin-bottom:16px;color:var(--ink-2);
+  }
+  .steps li::before{
+    content:counter(step);position:absolute;left:0;top:0;
+    width:30px;height:30px;border-radius:10px;background:var(--accent);color:#fff;
+    display:grid;place-items:center;font-size:13.5px;font-weight:700;
+  }
+  :root[data-theme="dark"] .steps li::before{color:#0C0C18}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .steps li::before{color:#0C0C18} }
+  .steps li b{display:block;color:var(--ink);font-weight:700;font-size:15.5px;margin-bottom:2px;letter-spacing:-.015em}
+  .steps li span{font-size:13.5px;color:var(--muted)}
+
+  .risk{display:grid;gap:10px;margin-bottom:18px}
+  .risk div{
+    background:var(--card);border:1px solid var(--hair-2);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow);
+  }
+  .risk b{display:block;font-size:14.5px;font-weight:700;margin-bottom:3px;letter-spacing:-.01em}
+  .risk span{font-size:13.5px;color:var(--muted);line-height:1.5}
+  .risk span em{font-style:normal;color:var(--green);font-weight:600}
+
+  .linkbox{
+    display:block;background:var(--card);border:1px solid var(--hair);border-radius:18px;
+    padding:18px 20px;margin:24px 0 8px;text-decoration:none;box-shadow:var(--shadow);
+  }
+  .linkbox b{display:block;font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-bottom:4px}
+  .linkbox span{display:block;font-size:13.5px;color:var(--muted);line-height:1.5}
+  .linkbox u{display:inline-block;margin-top:9px;font-size:13.5px;font-weight:600;color:var(--accent);text-decoration:none}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+
+  <div class="eyebrow"><b>маркетинг-бриф</b><i></i><span>«Своя подача»</span><i></i><span>сентябрь 2026</span></div>
+
+  <h1>Кофе, который придумал гость</h1>
+  <p class="sub">Человек пишет одну фразу — <b>«Барселона», «первый снег», «дедлайн»</b> — и получает напиток, собранный под неё: вкус, цвет, рисунок на пенке и подачу. Заказ уходит бариста партнёрской кофейни.</p>
+
+  <h2>Что продаём на самом деле</h2>
+  <p class="lead">Не кофе. Продаём повод: напиток, которого не было в меню до того, как гость его назвал.</p>
+  <p>Латте стоит 300 ₽ и не запоминается. Напиток с твоим названием, в твоих цветах и с рисунком под твою тему — это уже маленькое событие: его фотографируют, показывают друзьям и заказывают «как у него». Средний чек растёт не за счёт наценки, а за счёт того, что гость сам добирает состав и подачу.</p>
+
+  <div class="callout">
+    <b>Одна фраза для лифта:</b> «Назови что угодно — сварим кофе под это». Всё остальное в коммуникации — доказательства этой фразы.
+  </div>
+
+  <h2>Как это работает для гостя</h2>
+  <ol class="steps">
+    <li><b>Выбирает бюджет</b><span>Ползунок «от» и «до». Это не ограничение, а обещание: сервис не выйдет за названную сумму.</span></li>
+    <li><b>Пишет пожелание</b><span>Свободный текст: клуб, сериал, город, настроение, повод. Или тапает готовую подсказку.</span></li>
+    <li><b>Получает напиток</b><span>Название, описание под тему, состав с ценами, 3D-стакан, который наливается на экране.</span></li>
+    <li><b>Настраивает под себя</b><span>Выключает ингредиенты, меняет объём и подачу: навынос, керамика в зале или на льду. Цена, крепость и цвет пересчитываются мгновенно.</span></li>
+    <li><b>Заказывает</b><span>Рецепт уходит бариста. Готовность — около 6 минут.</span></li>
+  </ol>
+
+  <h2>Для кого</h2>
+  <p>Интересы есть у всех, но на старте нужна одна узкая группа, которая приведёт остальных. Порядок — по приоритету для первого месяца.</p>
+  <div class="cards">
+    <article>
+      <span class="who">Ядро запуска</span>
+      <h4>Гость кофейни, который снимает</h4>
+      <p>18–30 лет, заходит за кофе 3–5 раз в неделю, ведёт сторис. Ему нужен не новый вкус, а новый кадр и повод рассказать.</p>
+    </article>
+    <article>
+      <span class="who">Второй круг</span>
+      <h4>Фанат и гик</h4>
+      <p>Болельщик, любитель сериалов, игр, музыки. Реагирует на точное попадание в свою тему сильнее, чем на скидку.</p>
+    </article>
+    <article>
+      <span class="who">Сезонный пик</span>
+      <h4>Тот, кто ищет подарок</h4>
+      <p>14 февраля, 8 марта, дни рождения. Кофе с именем и рисунком — недорогой персональный жест.</p>
+    </article>
+    <article>
+      <span class="who">Средний чек</span>
+      <h4>Компания и офис</h4>
+      <p>Заказ на 3–6 стаканов под одну тему: командный матч, дедлайн, корпоратив.</p>
+    </article>
+  </div>
+
+  <h2>Отстройка</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Кто рядом</th><th>Что предлагает</th><th>Наше отличие</th></tr></thead>
+      <tbody>
+        <tr><td>Обычная кофейня</td><td>Фиксированное меню, сиропы на выбор</td><td>Напиток появляется от фразы гостя, а не из списка</td></tr>
+        <tr><td>Сезонные спецпредложения сетей</td><td>5 позиций на квартал, придуманы маркетингом</td><td>Бесконечное число тем, придуманы гостями</td></tr>
+        <tr><td>AI-бариста внутри сети</td><td>Функция в приложении одной сети</td><td>Отдельный продукт, подключаем любые кофейни; ставим подачу и рисунок в центр</td></tr>
+        <tr><td>Кастомизация в приложении</td><td>Чекбоксы: молоко, сироп, сахар</td><td>Не настройка заказа, а придуманный напиток с именем и историей</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Готовые сообщения</h2>
+  <p>Формулировки для сторис, вывесок у стойки и первых креативов. Каждое проверяется отдельным тестом.</p>
+  <div class="msg"><b>«Назови что угодно — сварим кофе под это»</b><span>Главное сообщение. Работает на холодную аудиторию, объясняет механику за секунду.</span></div>
+  <div class="msg"><b>«Твоего кофе не было в меню пять минут назад»</b><span>Для тех, кто уже стоит у стойки. Подчёркивает уникальность, а не функцию.</span></div>
+  <div class="msg"><b>«Сине-гранатовый дубль. 520 ₽. Только сегодня, только для тебя»</b><span>Показываем результат, а не обещание. Лучший формат для сторис и вывески.</span></div>
+  <div class="msg"><b>«Скажи тему — бариста нарисует её на пенке»</b><span>Для сегмента подарков и съёмки. Рисунок — главный визуальный крючок.</span></div>
+
+  <h2>Экономика заказа</h2>
+  <p>Цифры из работающего прототипа. Гость сам набирает чек: база дешевле обычного латте, надстройка даёт рост.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Что</th><th>Цена</th><th>Комментарий</th></tr></thead>
+      <tbody>
+        <tr><td>База 250 / 400 / 600 мл</td><td class="num">170 / 210 / 250 ₽</td><td>Кофе и молоко</td></tr>
+        <tr><td>Подача</td><td class="num">0 / 30 / 50 ₽</td><td>Навынос, керамика, на льду</td></tr>
+        <tr><td>Вкусовая позиция</td><td class="num">40–90 ₽</td><td>Сироп, шоколад, специи; обычно 3 в напитке</td></tr>
+        <tr><td>Рисунок на пенке</td><td class="num">90 ₽</td><td>Ключевой апселл, берётся ради фото</td></tr>
+        <tr><td>Премиум-допы</td><td class="num">60–90 ₽</td><td>Доп. шот, альтернативное молоко, пудра</td></tr>
+        <tr><td><strong>Типичный чек</strong></td><td class="num">390–720 ₽</td><td>Против 280–350 ₽ за обычный латте</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <b>Главный рычаг маркетинга — не трафик, а глубина сборки.</b> Гость, который дошёл до рисунка на пенке, оставляет почти вдвое больше. Коммуникация должна продавать подачу, а не кофе.
+  </div>
+
+  <h2>Каналы первого запуска</h2>
+  <ul>
+    <li><strong>QR у стойки и на столах.</strong> Самый дешёвый трафик: человек уже пришёл за кофе, барьера нет. Формулировка на табличке важнее дизайна.</li>
+    <li><strong>Сторис гостей.</strong> Механика встроена в продукт: получившийся стакан хочется снять. Нужен повод отметить кофейню — например, второй напиток за репост.</li>
+    <li><strong>Фан-сообщества.</strong> Локальные паблики болельщиков, аниме, настолок. Заходим не рекламой, а готовым напитком под их тему в день матча или премьеры.</li>
+    <li><strong>Инфоповоды по календарю.</strong> Матч, премьера сериала, первый снег, сессия. Одна тема — одна публикация — один готовый пресет в приложении.</li>
+    <li><strong>Локальные блогеры.</strong> Не обзор сервиса, а челлендж: назови самую странную тему и покажи, что получилось.</li>
+  </ul>
+
+  <h2>Что мерить</h2>
+  <p>Ориентиры для пилота в одной кофейне на 4 недели. Цифры — гипотезы, их и проверяем.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Метрика</th><th>Зачем</th><th>Ориентир</th></tr></thead>
+      <tbody>
+        <tr><td>Сканирование QR → открытие</td><td>Работает ли формулировка на табличке</td><td class="goal">25%</td></tr>
+        <tr><td>Открытие → сборка напитка</td><td>Понятен ли продукт без объяснений</td><td class="goal">60%</td></tr>
+        <tr><td>Сборка → заказ</td><td>Главная конверсия продукта</td><td class="goal">20%</td></tr>
+        <tr><td>Доля заказов с рисунком</td><td>Продаём ли подачу, а не просто кофе</td><td class="goal">40%</td></tr>
+        <tr><td>Средний чек</td><td>Оправдан ли сервис для кофейни</td><td class="goal">450 ₽</td></tr>
+        <tr><td>Повторный заказ за 2 недели</td><td>Разовый аттракцион или привычка</td><td class="goal">25%</td></tr>
+        <tr><td>Публикаций на 100 заказов</td><td>Работает ли бесплатное распространение</td><td class="goal">15</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Главный вопрос пилота — шестая строка. Если повторных заказов нет, мы сделали аттракцион, а не сервис, и коммуникацию надо переносить с новизны на вкус.</p>
+
+  <h2>Риски</h2>
+  <div class="risk">
+    <div><b>Напиток окажется невкусным</b><span>Фантазия гостя не равна хорошему рецепту. <em>Решение:</em> состав собирается только из каталога кофейни, нестандартные сочетания бариста подтверждает до оплаты.</span></div>
+    <div><b>Названия клубов, фильмов и игр</b><span>Прямое использование чужих брендов в рекламе — юридический риск. <em>Решение:</em> в коммуникации используем описания вместо имён: «сине-гранатовый», «под финальный матч». Гость у себя в приложении пишет что хочет.</span></div>
+    <div><b>Бариста не справится в час пик</b><span>Рисунок и слои требуют времени. <em>Решение:</em> в пилоте ограничиваем сложные подачи по времени суток и честно показываем срок готовности.</span></div>
+    <div><b>Разовый интерес</b><span>Попробовали и забыли. <em>Решение:</em> сезонные темы и сохранённые рецепты, чтобы было куда возвращаться.</span></div>
+  </div>
+
+  <h2>План на шесть недель</h2>
+  <ol class="steps">
+    <li><b>Недели 1–2. Одна кофейня</b><span>Согласовать каталог ингредиентов и цены, обучить смену, напечатать таблички с QR. Тест на сотрудниках и знакомых.</span></li>
+    <li><b>Недели 3–4. Пилот</b><span>Живой трафик, замер всех семи метрик, каждый день — разбор неудачных напитков с бариста.</span></li>
+    <li><b>Неделя 5. Инфоповод</b><span>Одна большая тема под конкретную дату, посев в двух локальных сообществах, челлендж с блогером.</span></li>
+    <li><b>Неделя 6. Решение</b><span>Смотрим на повторные заказы и средний чек. Дальше — либо вторая кофейня, либо разворот коммуникации.</span></li>
+  </ol>
+
+  <h2>Что уже есть</h2>
+  <p>Работающий кликабельный прототип: генерация напитка по фразе, фильтр бюджета, выбор подачи, редактируемый состав и 3D-напиток. Заказы пока никуда не уходят — это витрина механики для гостей, кофеен и партнёров.</p>
+
+  <a class="linkbox" href="./">
+    <b>Прототип «Своя подача»</b>
+    <span>Открывается в браузере на телефоне и компьютере. Страница публичная — ссылку можно отправлять кому угодно.</span>
+    <u>Открыть прототип →</u>
+  </a>
+
+  <div class="callout warn">
+    <b>Важно для честности в коммуникации:</b> сейчас напитки собирает алгоритм по словарю тем, а не нейросеть. Слово «ИИ» в рекламе использовать нельзя, пока не подключён бэкенд с моделью и каталогом кофейни.
+  </div>
+
+  <h2>Что нужно от маркетинга</h2>
+  <ul>
+    <li>Выбрать <strong>одну</strong> первую аудиторию из четырёх и написать под неё тексты табличек и первых сторис.</li>
+    <li>Проверить три главных сообщения на маленьком бюджете до запуска.</li>
+    <li>Собрать календарь инфоповодов на квартал: под каждый — готовая тема в приложении.</li>
+    <li>Придумать механику, которая превращает фото гостя в бесплатный трафик.</li>
+    <li>Дать формулировки для бариста: что говорить гостю у стойки за десять секунд.</li>
+  </ul>
+
+  <footer>Бриф описывает продукт на стадии прототипа. Все цены и метрики — гипотезы для проверки в пилоте, не факты.</footer>
+</div>
