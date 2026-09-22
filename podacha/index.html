@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#EFF0F4">
+<meta name="theme-color" content="#06060B">
 <title>Своя подача</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root{
-    color-scheme:light dark;
+    color-scheme:dark;
     padding-top:env(safe-area-inset-top, 0px);
     padding-bottom:env(safe-area-inset-bottom, 0px);
   }
@@ -22,233 +22,312 @@
 <body>
 <style>
   :root{
-    --bg-a:#EFF0F4; --bg-b:#F8F1E8; --bg-c:#CCCDEF;
-    --card:#FFFFFF; --card-2:#F3F3F7;
-    --ink:#16161B; --ink-2:#4A4A55; --muted:#8A8A95;
-    --hair:rgba(22,22,27,.10); --hair-2:rgba(22,22,27,.055);
-    --accent:#5A5BE0; --on-accent:#FFFFFF; --accent-soft:rgba(90,91,224,.10);
-    --ok:#2E9E6B; --warn:#C2761B;
-    --shadow-card:0 10px 40px rgba(32,30,55,.10);
-    --shadow-soft:0 2px 12px rgba(32,30,55,.07);
-    --bar:rgba(255,255,255,.84);
-    --stage-top:#F6F6FA; --stage-bot:#D6D8F1;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg-a:#131318; --bg-b:#1B1815; --bg-c:#26264A;
-      --card:#1D1D24; --card-2:#26262E;
-      --ink:#F1F1F5; --ink-2:#C4C4CE; --muted:#90909B;
-      --hair:rgba(255,255,255,.13); --hair-2:rgba(255,255,255,.065);
-      --accent:#8A8BF5; --on-accent:#0B0B1A; --accent-soft:rgba(138,139,245,.16);
-      --ok:#4BC98C; --warn:#E3A044;
-      --shadow-card:0 10px 40px rgba(0,0,0,.45);
-      --shadow-soft:0 2px 12px rgba(0,0,0,.35);
-      --bar:rgba(20,20,26,.88);
-      --stage-top:#1C1C24; --stage-bot:#2B2B50;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg-a:#131318; --bg-b:#1B1815; --bg-c:#26264A;
-    --card:#1D1D24; --card-2:#26262E;
-    --ink:#F1F1F5; --ink-2:#C4C4CE; --muted:#90909B;
-    --hair:rgba(255,255,255,.13); --hair-2:rgba(255,255,255,.065);
-    --accent:#8A8BF5; --on-accent:#0B0B1A; --accent-soft:rgba(138,139,245,.16);
-    --ok:#4BC98C; --warn:#E3A044;
-    --shadow-card:0 10px 40px rgba(0,0,0,.45);
-    --shadow-soft:0 2px 12px rgba(0,0,0,.35);
-    --bar:rgba(20,20,26,.88);
-    --stage-top:#1C1C24; --stage-bot:#2B2B50;
+    --void:#06060B;
+    --txt:#FFFFFF;
+    --txt-2:rgba(255,255,255,.64);
+    --txt-3:rgba(255,255,255,.38);
+    --glass:rgba(255,255,255,.045);
+    --glass-2:rgba(255,255,255,.075);
+    --edge:rgba(255,255,255,.10);
+    --edge-2:rgba(255,255,255,.055);
+    --blue:#4D7CFF;
+    --violet:#9A5CFF;
+    --cyan:#37DFE8;
+    --magenta:#FF5CC8;
+    --ok:#3BE0A0;
+    --amber:#FFB35C;
+    --accent:#6E8BFF;
+    --drink:#6E8BFF;
+    --r-lg:30px;
+    --r-md:20px;
+    --r-sm:14px;
+    --shadow:0 24px 70px rgba(0,0,0,.55);
   }
 
   html,body{height:100%}
   body{
-    margin:0;color:var(--ink);
-    font-family:"Onest", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin:0;background:var(--void);color:var(--txt);
+    font-family:"Onest", ui-sans-serif, system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing:antialiased;
-    background:
-      radial-gradient(90% 55% at 84% 2%, var(--bg-b) 0%, transparent 58%),
-      radial-gradient(120% 60% at 6% 100%, var(--bg-c) 0%, transparent 62%),
-      linear-gradient(180deg, var(--bg-a) 0%, var(--bg-a) 44%, var(--bg-b) 100%);
-    background-attachment:fixed;
+    overflow-x:hidden;
   }
   *{box-sizing:border-box}
   button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
   input{font:inherit;color:inherit}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:12px}
+  :focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:3px;border-radius:10px}
 
-  .wrap{max-width:1160px;margin:0 auto;padding-left:16px;padding-right:16px}
-  .page{padding-bottom:142px}
-  @media (min-width:920px){ .page{padding-bottom:132px} }
+  /* ================= среда ================= */
+  .env{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--void);pointer-events:none}
+  .aurora{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform}
+  .a1{width:78vmax;height:78vmax;left:-26vmax;top:-32vmax;
+      background:radial-gradient(circle, rgba(77,124,255,.42), transparent 62%);
+      animation:drift1 46s infinite alternate ease-in-out}
+  .a2{width:62vmax;height:62vmax;right:-24vmax;top:-12vmax;
+      background:radial-gradient(circle, rgba(154,92,255,.34), transparent 64%);
+      animation:drift2 58s infinite alternate ease-in-out}
+  .a3{width:74vmax;height:74vmax;left:-14vmax;bottom:-40vmax;
+      background:radial-gradient(circle, rgba(55,223,232,.20), transparent 66%);
+      animation:drift3 52s infinite alternate ease-in-out}
+  .a4{width:46vmax;height:46vmax;right:-16vmax;bottom:-22vmax;
+      background:radial-gradient(circle, rgba(255,92,200,.16), transparent 66%);
+      animation:drift2 64s infinite alternate-reverse ease-in-out}
+  @keyframes drift1{to{transform:translate3d(10vmax,6vmax,0) scale(1.12)}}
+  @keyframes drift2{to{transform:translate3d(-8vmax,8vmax,0) scale(1.08)}}
+  @keyframes drift3{to{transform:translate3d(9vmax,-7vmax,0) scale(1.1)}}
+  .grain{
+    position:absolute;inset:-50%;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .vignette{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 35%, transparent 40%, rgba(0,0,0,.72) 100%)}
 
-  .top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:14px 2px}
-  .logo{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:700;letter-spacing:-.01em}
-  .logo i{width:24px;height:24px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:var(--on-accent);font-style:normal;font-size:12px;font-weight:800}
-  .top nav{display:flex;gap:16px;font-size:12.5px;color:var(--muted);font-weight:500}
-  @media (max-width:760px){ .top nav{display:none} }
-
-  .main{display:grid;gap:16px;grid-template-columns:1fr;padding-block:8px 24px}
-  @media (min-width:920px){
-    .main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:34px;align-items:start;padding-block:12px 34px}
-    .left{position:sticky;top:16px}
+  /* ================= каркас ================= */
+  .shell{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding-bottom:150px}
+  @media (min-width:1000px){
+    .shell{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(400px,.95fr);
+           gap:56px;align-items:start;padding:0 40px 140px}
+    .left{position:sticky;top:0;padding-top:14px;padding-bottom:30px}
   }
 
-  .cupstage{
-    position:relative;border-radius:26px;overflow:hidden;
-    background:linear-gradient(175deg, var(--stage-top) 0%, var(--stage-bot) 100%);
-    box-shadow:var(--shadow-card);border:1px solid var(--hair-2);
-    aspect-ratio:1/1;max-height:44svh;margin-inline:auto;width:100%;
+  .top{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:18px 20px 4px;
   }
-  @media (min-width:920px){ .cupstage{border-radius:30px;max-height:58vh} }
+  @media (min-width:1000px){ .top{padding:20px 0 4px;grid-column:1/-1} }
+  .mark{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .mark i{
+    width:22px;height:22px;border-radius:7px;font-style:normal;
+    background:linear-gradient(140deg, var(--blue), var(--violet));
+    display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;
+  }
+  .meta{display:flex;gap:16px;font-family:"JetBrains Mono",monospace;font-size:10px;
+        letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3)}
+  @media (max-width:700px){ .meta span:last-child{display:none} }
+
+  /* ================= сцена ================= */
+  .stage{position:relative;height:clamp(300px,50svh,460px);margin-top:-6px}
+  @media (min-width:1000px){ .stage{height:min(46vh,470px)} }
   #scene{display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab}
   #scene:active{cursor:grabbing}
-  .stagefall{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:22px;color:var(--muted);font-size:13.5px;font-weight:500}
-  .chipover{
-    position:absolute;display:flex;align-items:center;gap:7px;
-    background:rgba(255,255,255,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    border:1px solid var(--hair-2);border-radius:999px;padding:5px 11px;
-    font-size:11px;font-weight:600;color:var(--ink-2);
+  .stagefall{position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+             padding:24px;color:var(--txt-3);font-size:13px}
+  .hud{
+    position:absolute;left:20px;top:8px;display:flex;align-items:center;gap:8px;
+    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--txt-3);opacity:0;transition:opacity .35s;
   }
-  :root[data-theme="dark"] .chipover{background:rgba(30,30,40,.7)}
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .chipover{background:rgba(30,30,40,.7)} }
-  .spin{left:50%;bottom:11px;transform:translateX(-50%);pointer-events:none;opacity:.85}
-  .brewbadge{top:11px;left:11px;opacity:0;transition:opacity .3s}
-  .brewbadge.on{opacity:1}
-  .brewbadge i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1s infinite}
-  @keyframes pulse{50%{opacity:.25}}
-
-  .caption{margin-top:14px}
-  .tagline{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-  .tag{border-radius:999px;padding:4px 10px;font-size:10.5px;font-weight:700;background:var(--accent);color:var(--on-accent)}
-  .tag.soft{background:var(--accent-soft);color:var(--accent)}
-  .tag.grey{background:var(--card-2);color:var(--muted)}
-  .cname{margin:0 0 7px;font-size:clamp(25px,6.4vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
-  .cdesc{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-2);max-width:48ch}
-  .serveline{margin:9px 0 0;font-size:13px;color:var(--muted);font-weight:500;line-height:1.45}
-  .serveline b{color:var(--ink-2);font-weight:600}
-
-  .panelcard{background:var(--card);border-radius:24px;padding:16px;box-shadow:var(--shadow-card);border:1px solid var(--hair-2)}
-  @media (min-width:920px){ .panelcard{padding:20px;border-radius:26px} }
-
-  .orderhead{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .total{font-size:clamp(24px,7vw,30px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.05}
-  .total s{display:block;font-size:12.5px;font-weight:600;color:var(--muted);text-decoration:line-through;margin-top:2px}
-  .qty{display:flex;align-items:center;background:var(--card-2);border-radius:13px;overflow:hidden;flex:0 0 auto}
-  .qty button{width:40px;height:38px;font-size:19px;font-weight:600;color:var(--ink-2)}
-  .qty button:active{background:var(--hair-2)}
-  .qty span{width:26px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
-  .buy{
-    width:100%;margin-top:12px;background:var(--accent);color:var(--on-accent);border-radius:16px;padding:15px;
-    font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;
-    transition:transform .16s cubic-bezier(.3,1.4,.5,1),background .25s;
+  .hud.on{opacity:1;color:rgba(255,255,255,.7)}
+  .hud i{width:5px;height:5px;border-radius:50%;background:var(--accent);
+         box-shadow:0 0 12px var(--accent);animation:blip 1.1s infinite}
+  @keyframes blip{50%{opacity:.25}}
+  .spin{
+    position:absolute;left:50%;bottom:4px;transform:translateX(-50%);
+    font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--txt-3);pointer-events:none;transition:opacity .4s;
   }
-  .buy:active{transform:scale(.98)}
-  .buy.done{background:var(--ok)}
-  .hintline{margin:10px 0 0;font-size:12px;color:var(--muted);text-align:center;font-weight:500;line-height:1.45}
-  .hintline.warn{color:var(--warn)}
 
-  .sechead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:18px 0 0;padding-top:15px;border-top:1px solid var(--hair-2)}
-  .sechead h2{margin:0;font-size:16px;font-weight:700;letter-spacing:-.02em}
-  .sechead span{font-size:12px;color:var(--muted);font-weight:500}
-
-  .serves{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}
-  .serve{
-    border-radius:14px;padding:10px 8px;background:var(--card-2);color:var(--ink-2);text-align:center;
-    display:flex;flex-direction:column;align-items:center;gap:5px;transition:background .2s,color .2s;
+  /* ================= идентичность ================= */
+  .identity{padding:10px 20px 0}
+  @media (min-width:1000px){ .identity{padding:14px 0 0} }
+  .tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .tag{
+    font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+    border:1px solid var(--edge);border-radius:999px;padding:5px 10px;color:var(--txt-2);
+    background:rgba(255,255,255,.03);
   }
-  .serve svg{width:26px;height:30px;display:block}
-  .serve b{font-size:12.5px;font-weight:700;letter-spacing:-.01em}
-  .serve span{font-size:10px;color:var(--muted);line-height:1.25;font-weight:500}
-  .serve[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
-  .serve[aria-pressed="true"] span{color:var(--accent)}
+  .tag.lead{border-color:transparent;background:rgba(255,255,255,.92);color:#06060B;font-weight:500}
+  .tag.soft{border-color:color-mix(in srgb, var(--accent) 45%, transparent);color:var(--accent)}
+  .name{
+    margin:0 0 12px;font-size:clamp(32px,8.6vw,62px);line-height:.98;font-weight:700;
+    letter-spacing:-.045em;text-wrap:balance;
+  }
+  @media (min-width:1000px){ .name{font-size:clamp(40px,4vw,58px)} }
+  .desc{margin:0;font-size:clamp(14.5px,1.7vw,16px);line-height:1.6;color:var(--txt-2);max-width:46ch;font-weight:300}
+  .serveline{margin:14px 0 0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+             letter-spacing:.08em;color:var(--txt-3);line-height:1.6}
+  .serveline b{color:var(--txt-2);font-weight:500}
 
-  .vols{display:flex;gap:6px;margin:12px 0 2px}
-  .vol{flex:1;border-radius:11px;padding:9px 4px;font-size:12.5px;font-weight:600;background:var(--card-2);color:var(--ink-2);font-variant-numeric:tabular-nums;text-align:center}
-  .vol[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+  /* ================= стеклянные слои ================= */
+  .panel{
+    margin:26px 16px 0;border-radius:var(--r-lg);padding:20px;
+    background:var(--glass);border:1px solid var(--edge);
+    backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%);
+    box-shadow:var(--shadow);
+  }
+  @media (min-width:1000px){ .panel{margin:0;padding:24px} }
+  .panel + .panel{margin-top:14px}
+  @media (min-width:1000px){ .panel + .panel{margin-top:16px} }
 
-  .ingrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--hair-2)}
-  .ingrow:last-child{border-bottom:0}
-  .ingrow .e{width:32px;height:32px;border-radius:10px;background:var(--card-2);display:grid;place-items:center;font-size:15px;flex:0 0 auto}
-  .ingrow .txt{flex:1;min-width:0}
-  .ingrow .txt b{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em}
-  .ingrow .txt span{display:block;font-size:11.5px;color:var(--muted);font-weight:500;line-height:1.3}
-  .ingrow .p{font-size:12.5px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
-  .ingrow .p.free{color:var(--muted);font-weight:600;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
-  .ingrow[data-on="false"]{opacity:.45}
-  .ingrow[data-on="false"] .txt b{text-decoration:line-through;text-decoration-thickness:1.5px}
-  .ingrow[data-off="true"]{opacity:.4}
+  .plabel{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px;
+    font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--txt-3);
+  }
+  .plabel b{color:rgba(255,255,255,.3);font-weight:400;font-family:"Onest",sans-serif;
+    font-size:11px;letter-spacing:0;text-transform:none}
 
-  .sw{width:44px;height:26px;border-radius:99px;background:var(--hair);position:relative;flex:0 0 auto;transition:background .22s}
-  .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.28);transition:transform .22s}
-  .sw[aria-pressed="true"]{background:var(--accent)}
-  .sw[aria-pressed="true"]::after{transform:translateX(18px)}
-  .sw[disabled]{opacity:.4;cursor:not-allowed}
+  /* цена и заказ */
+  .pricerow{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+  .price{font-size:clamp(32px,9vw,44px);font-weight:600;letter-spacing:-.04em;line-height:.95;font-variant-numeric:tabular-nums}
+  .price s{display:block;font-size:12px;font-weight:400;color:var(--txt-3);text-decoration:line-through;margin-top:6px;letter-spacing:0}
+  .qty{display:flex;align-items:center;border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+  .qty button{width:40px;height:40px;font-size:17px;color:var(--txt-2);transition:background .2s}
+  .qty button:active{background:rgba(255,255,255,.08)}
+  .qty span{width:26px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums;font-size:15px}
+  .order{
+    width:100%;margin-top:18px;border-radius:16px;padding:16px;background:#FFFFFF;color:#06060B;
+    font-size:15.5px;font-weight:600;letter-spacing:-.01em;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:transform .18s cubic-bezier(.3,1.3,.5,1),background .3s;
+  }
+  .order:active{transform:scale(.985)}
+  .order.done{background:var(--ok);color:#03150E}
+  .hint{margin:12px 0 0;font-size:11.5px;line-height:1.5;color:var(--txt-3);text-align:center}
+  .hint.warn{color:var(--amber)}
 
-  .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--hair-2)}
-  .stat{min-width:66px}
-  .stat b{display:block;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-  .stat span{display:block;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:2px}
+  /* ================= вкусовая дуга ================= */
+  .arcwrap{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0 -6px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 26px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 26px),transparent 100%);}
+  .arcwrap::-webkit-scrollbar{display:none}
+  .arc{display:flex;align-items:flex-start;gap:6px;padding:4px 6px 2px;width:max-content;margin:0 auto;min-width:100%}
+  .node{
+    width:78px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;
+    position:relative;padding-top:4px;background:none;
+  }
+  .node + .node::before{
+    content:"";position:absolute;left:-42px;top:31px;width:48px;height:1px;
+    background:linear-gradient(90deg, transparent, var(--drink), transparent);
+    opacity:.55;transition:opacity .3s;
+  }
+  .node[data-on="false"]::before,
+  .node[data-on="false"] + .node::before{opacity:.12;background:rgba(255,255,255,.5)}
+  .orb{
+    width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:20px;
+    border:1px solid var(--edge);background:rgba(255,255,255,.04);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 8px 24px rgba(0,0,0,.4);
+    transition:transform .25s cubic-bezier(.3,1.4,.5,1), box-shadow .3s, border-color .3s, opacity .3s;
+    position:relative;
+  }
+  .orb::after{
+    content:"";position:absolute;inset:-5px;border-radius:50%;
+    background:radial-gradient(circle, var(--dot, transparent) 0%, transparent 68%);
+    opacity:.55;filter:blur(7px);transition:opacity .3s;
+  }
+  .node[data-on="true"] .orb{border-color:color-mix(in srgb, var(--dot, #fff) 60%, transparent)}
+  .node[data-on="false"] .orb{opacity:.34;transform:scale(.88)}
+  .node[data-on="false"] .orb::after{opacity:0}
+  .node[data-off="true"] .orb{border-style:dashed;opacity:.25}
+  .node:active .orb{transform:scale(.93)}
+  .nlabel{font-size:10.5px;line-height:1.3;text-align:center;color:var(--txt-2);font-weight:400}
+  .node[data-on="false"] .nlabel{color:var(--txt-3);text-decoration:line-through;text-decoration-thickness:1px}
+  .nprice{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--txt-3);letter-spacing:.04em;line-height:1.35}
+  .node.root[data-on="true"] .nprice{text-transform:lowercase;color:rgba(255,255,255,.28)}
+  .node[data-on="true"] .nprice{color:var(--accent)}
+  .arcfoot{
+    margin-top:14px;padding-top:14px;border-top:1px solid var(--edge-2);
+    font-size:11.5px;color:var(--txt-3);line-height:1.5;text-align:center;
+  }
 
-  .bar{
+  /* ================= сегменты ================= */
+  .seg{display:grid;gap:7px;grid-template-columns:repeat(3,1fr)}
+  .seg button{
+    border:1px solid var(--edge-2);border-radius:var(--r-sm);padding:12px 8px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    background:rgba(255,255,255,.02);transition:background .25s,border-color .25s,transform .18s;
+  }
+  .seg button:active{transform:scale(.97)}
+  .seg button svg{width:22px;height:26px;opacity:.72;transition:opacity .25s}
+  .seg button b{font-size:12px;font-weight:500;letter-spacing:-.01em}
+  .seg button span{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.1em;color:var(--txt-3)}
+  .seg button[aria-pressed="true"]{background:rgba(255,255,255,.10);border-color:var(--edge)}
+  .seg button[aria-pressed="true"] svg{opacity:1}
+  .seg.vol{grid-template-columns:repeat(3,1fr)}
+  .seg.vol button{padding:11px 6px;font-variant-numeric:tabular-nums}
+
+  /* ================= метрики ================= */
+  .meters{display:flex;flex-direction:column;gap:14px}
+  .meter{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+  .meter .mk{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;
+             text-transform:uppercase;color:var(--txt-3)}
+  .meter .mv{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--txt);font-variant-numeric:tabular-nums}
+  .meter .track{grid-column:1/-1;height:3px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+  .meter .fill{height:100%;border-radius:99px;transition:width .5s cubic-bezier(.3,1,.4,1)}
+  .m1 .fill{background:linear-gradient(90deg, var(--blue), var(--cyan))}
+  .m2 .fill{background:linear-gradient(90deg, var(--violet), var(--magenta))}
+  .m3 .fill{background:linear-gradient(90deg, rgba(255,255,255,.35), rgba(255,255,255,.8))}
+
+  /* ================= нижняя панель ================= */
+  .dock{
     position:fixed;left:0;right:0;bottom:0;z-index:50;
-    background:var(--bar);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
-    border-top:1px solid var(--hair-2);padding-bottom:env(safe-area-inset-bottom, 0px);
+    padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));
+    background:linear-gradient(to top, rgba(6,6,11,.92) 55%, rgba(6,6,11,0));
   }
-  .barin{padding-block:9px 10px;display:flex;flex-direction:column;gap:8px}
-  .barrow{display:flex;gap:8px;align-items:center}
+  .dockin{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
+  .dockrow{display:flex;gap:8px;align-items:center}
+  .budget{
+    flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:12px 14px;border-radius:18px;
+    border:1px solid var(--edge);background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.04em;white-space:nowrap;
+  }
+  .budget em{font-style:normal;color:var(--txt-3);letter-spacing:.14em;text-transform:uppercase;font-size:9px}
+  .budget b{color:var(--accent);font-weight:500}
+  .budget svg{width:11px;height:11px;color:var(--txt-3);transition:transform .25s}
+  .budget[aria-expanded="true"] svg{transform:rotate(180deg)}
+  @media (max-width:430px){ .budget em{display:none} }
 
-  .pricepill{
-    display:flex;align-items:center;gap:6px;border-radius:22px;padding:11px 13px;flex:0 0 auto;
-    background:var(--card);border:1px solid var(--hair-2);box-shadow:var(--shadow-soft);
-    font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums;
+  .ask{
+    flex:1;min-width:0;display:flex;align-items:center;gap:6px;padding:5px 5px 5px 16px;border-radius:18px;
+    border:1px solid var(--edge);background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   }
-  .pricepill em{font-style:normal;color:var(--muted);font-weight:600}
-  .pricepill svg{width:13px;height:13px;transition:transform .2s;color:var(--muted)}
-  .pricepill[aria-expanded="true"] svg{transform:rotate(180deg)}
-  @media (max-width:420px){ .pricepill em{display:none} }
+  .ask input{flex:1;min-width:0;border:0;background:transparent;padding:10px 0;font-size:16px;font-weight:300}
+  .ask input::placeholder{color:var(--txt-3)}
+  .send{
+    width:38px;height:38px;flex:0 0 auto;border-radius:13px;background:#fff;color:#06060B;
+    display:grid;place-items:center;transition:transform .18s cubic-bezier(.3,1.4,.5,1),opacity .2s;
+  }
+  .send svg{width:16px;height:16px}
+  .send:active{transform:scale(.92)}
+  .send[disabled]{opacity:.4;pointer-events:none}
 
-  .composer{
-    flex:1;min-width:0;display:flex;align-items:center;gap:6px;border-radius:22px;padding:4px 4px 4px 15px;
-    background:var(--card);border:1px solid var(--hair-2);box-shadow:var(--shadow-soft);
+  .budgetpanel{
+    border:1px solid var(--edge);border-radius:var(--r-md);padding:16px 18px 14px;
+    background:rgba(255,255,255,.05);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   }
-  .composer input{flex:1;min-width:0;border:0;background:transparent;padding:10px 0;font-size:16px;font-weight:500}
-  .composer input::placeholder{color:var(--muted)}
-  .go{
-    flex:0 0 auto;height:40px;min-width:40px;padding:0 16px;border-radius:20px;background:var(--accent);color:var(--on-accent);
-    font-size:14.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;
-    transition:transform .16s cubic-bezier(.3,1.4,.5,1),opacity .2s;
-  }
-  .go:active{transform:scale(.94)}
-  .go[disabled]{opacity:.5;pointer-events:none}
-  .go svg{width:17px;height:17px}
-  @media (max-width:620px){ .go{padding:0;width:40px} .go span{display:none} }
-
-  .pricepanel{background:var(--card);border:1px solid var(--hair-2);border-radius:18px;padding:14px 16px 12px;box-shadow:var(--shadow-soft)}
-  .pricepanel[hidden]{display:none}
-  .pphead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
-  .pphead b{font-size:13.5px;font-weight:700}
-  .pphead span{font-size:12.5px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
-  .dual{position:relative;height:28px;margin:0 11px}
-  .dual .track{position:absolute;top:12px;left:-11px;right:-11px;height:5px;border-radius:99px;background:var(--hair)}
-  .dual .fill{position:absolute;top:12px;height:5px;border-radius:99px;background:var(--accent)}
-  .dual input{position:absolute;top:0;left:-11px;width:calc(100% + 22px);height:28px;margin:0;-webkit-appearance:none;appearance:none;background:transparent;pointer-events:none}
-  .dual input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid var(--hair);box-shadow:0 2px 6px rgba(0,0,0,.22)}
-  .dual input::-moz-range-thumb{pointer-events:auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair);background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.22)}
+  .budgetpanel[hidden]{display:none}
+  .bphead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;
+          font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-3)}
+  .bphead b{color:var(--txt);font-weight:500;letter-spacing:.04em;font-size:12px;text-transform:none}
+  .dual{position:relative;height:26px;margin:0 12px}
+  .dual .track{position:absolute;top:11px;left:-12px;right:-12px;height:2px;border-radius:99px;background:rgba(255,255,255,.14)}
+  .dual .fill{position:absolute;top:11px;height:2px;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--violet))}
+  .dual input{position:absolute;top:0;left:-12px;width:calc(100% + 24px);height:26px;margin:0;
+              -webkit-appearance:none;appearance:none;background:transparent;pointer-events:none}
+  .dual input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:22px;height:22px;border-radius:50%;
+              background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+  .dual input::-moz-range-thumb{pointer-events:auto;width:22px;height:22px;border-radius:50%;border:0;
+              background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.5)}
   .dual input::-moz-range-track{background:transparent;border:0}
-  .presets{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-  .preset{border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;background:var(--card-2);color:var(--ink-2);font-variant-numeric:tabular-nums}
-  .preset[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+  .presets{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+  .preset{border:1px solid var(--edge-2);border-radius:999px;padding:6px 11px;
+          font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--txt-2);transition:background .2s,border-color .2s}
+  .preset[aria-pressed="true"]{background:rgba(255,255,255,.12);border-color:var(--edge);color:var(--txt)}
 
-  .sugg{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .sugg::-webkit-scrollbar{display:none}
-  .sugg button{
-    flex:0 0 auto;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:500;
-    background:var(--card);border:1px solid var(--hair-2);color:var(--ink-2);box-shadow:var(--shadow-soft);
+  .seeds{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .seeds::-webkit-scrollbar{display:none}
+  .seeds button{
+    flex:0 0 auto;border:1px solid var(--edge-2);border-radius:999px;padding:6px 12px;
+    font-size:11.5px;color:var(--txt-2);font-weight:300;background:rgba(255,255,255,.03);
+    transition:background .2s,color .2s;
   }
+  .seeds button:active{background:rgba(255,255,255,.1);color:var(--txt)}
 
   .toast{
-    position:fixed;left:50%;bottom:calc(132px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);z-index:90;
-    background:var(--ink);color:var(--card);padding:11px 16px;border-radius:999px;font-size:13.5px;font-weight:600;
-    opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;max-width:88vw;text-align:center;box-shadow:var(--shadow-card);
+    position:fixed;left:50%;bottom:calc(136px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);
+    z-index:90;padding:11px 18px;border-radius:999px;font-size:13px;
+    background:rgba(255,255,255,.95);color:#06060B;font-weight:500;
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:88vw;text-align:center;
   }
   .toast.on{opacity:1;transform:translate(-50%,0)}
 
@@ -257,29 +336,37 @@
   }
 </style>
 
-<div class="wrap page">
-  <header class="top">
-    <div class="logo"><i>С</i> Своя подача</div>
-    <nav><span>Гуща на Рубинштейна</span><span>готовность 6 мин</span></nav>
-  </header>
-
-  <main class="main">
-    <div class="left">
-      <div class="cupstage" id="cupstage">
-        <canvas id="scene"></canvas>
-        <div class="chipover brewbadge" id="brewbadge"><i></i><span id="brewtext">Собираю рецепт</span></div>
-        <div class="chipover spin" id="spinhint">покрути пальцем</div>
-      </div>
-      <div class="caption" id="caption"></div>
-    </div>
-    <div class="right" id="right"></div>
-  </main>
+<div class="env">
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="aurora a3"></div>
+  <div class="aurora a4"></div>
+  <div class="grain"></div>
+  <div class="vignette"></div>
 </div>
 
-<div class="bar">
-  <div class="wrap barin">
-    <div class="pricepanel" id="pricepanel" hidden>
-      <div class="pphead"><b>Бюджет за порцию</b><span id="ppval">300 – 700 ₽</span></div>
+<div class="shell">
+  <header class="top">
+    <div class="mark"><i>С</i> Своя подача</div>
+    <div class="meta"><span>Гуща · Рубинштейна</span><span>готово за 6 мин</span></div>
+  </header>
+
+  <div class="left">
+    <div class="stage" id="stage">
+      <canvas id="scene"></canvas>
+      <div class="hud" id="hud"><i></i><span id="hudtext">собираю</span></div>
+      <div class="spin" id="spinhint">покрути пальцем</div>
+    </div>
+    <div class="identity" id="identity"></div>
+  </div>
+
+  <div class="right" id="right"></div>
+</div>
+
+<div class="dock">
+  <div class="dockin">
+    <div class="budgetpanel" id="budgetpanel" hidden>
+      <div class="bphead"><b>Бюджет за порцию</b><span id="bpval">300 – 700 ₽</span></div>
       <div class="dual">
         <div class="track"><div class="fill" id="fill"></div></div>
         <input type="range" id="pmin" min="150" max="1300" step="50" value="300" aria-label="Минимальная цена">
@@ -288,21 +375,20 @@
       <div class="presets" id="presets"></div>
     </div>
 
-    <div class="barrow">
-      <button class="pricepill" id="pricepill" type="button" aria-expanded="false">
-        <em>цена</em><span id="pillval">300–700 ₽</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
+    <div class="dockrow">
+      <button class="budget" id="budgetbtn" type="button" aria-expanded="false">
+        <em>бюджет</em><b id="budgetval">300–700 ₽</b>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
       </button>
-      <form class="composer" id="form">
-        <input id="q" type="text" placeholder="Какой хочешь кофе?" autocomplete="off" aria-label="Пожелание">
-        <button class="go" id="go" type="submit" aria-label="Сварить">
+      <form class="ask" id="form">
+        <input id="q" type="text" placeholder="Опиши свой кофе" autocomplete="off" aria-label="Пожелание">
+        <button class="send" id="send" type="submit" aria-label="Собрать напиток">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-          <span>Сварить</span>
         </button>
       </form>
     </div>
 
-    <div class="sugg" id="sugg"></div>
+    <div class="seeds" id="seeds"></div>
   </div>
 </div>
 
@@ -313,8 +399,8 @@
 (function(){
   "use strict";
   const $ = s => document.querySelector(s);
-  const money = n => n.toLocaleString("ru-RU") + " ₽";
   const el = (t,c)=>{const e=document.createElement(t); if(c) e.className=c; return e;};
+  const money = n => n.toLocaleString("ru-RU") + " ₽";
   function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return Math.abs(h);}
   function rnd(seed){let x=(seed>>>0)||1;return()=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x/4294967296;};}
 
@@ -341,6 +427,10 @@
     const a=rgb2hsl(hex2rgb(hex));
     return rgb2hex(hsl2rgb(a[0], Math.min(.9, Math.max(a[1]*1.7,.42)), Math.min(.56, Math.max(.27, a[2]*.88))));
   }
+  function lift(hex){ // осветлённый вариант для свечения на тёмном фоне
+    const a=rgb2hsl(hex2rgb(hex));
+    return rgb2hex(hsl2rgb(a[0], Math.min(1, a[1]*1.15), Math.min(.72, Math.max(.52, a[2]*1.5))));
+  }
 
   /* ================= данные ================= */
   const VOLS = [
@@ -349,23 +439,22 @@
     {ml:600, price:250, kcal:200, caff:165}
   ];
   const SERVES = {
-    togo:    {id:"togo",    n:"Навынос",  note:"бумажный стакан, держатель", price:0,  cold:false},
-    ceramic: {id:"ceramic", n:"В зале",   note:"керамика на блюдце",         price:30, cold:false},
-    iced:    {id:"iced",    n:"На льду",  note:"бокал, лёд, трубочка",       price:50, cold:true}
+    togo:    {id:"togo",    n:"Навынос",  note:"стакан",   price:0,  cold:false},
+    ceramic: {id:"ceramic", n:"В зале",   note:"керамика", price:30, cold:false},
+    iced:    {id:"iced",    n:"На льду",  note:"бокал",    price:50, cold:true}
   };
   const SERVE_ORDER = ["togo","ceramic","iced"];
-
   const BASE_ING = cold => ([
-    {id:"shot", e:"☕", n: cold ? "Колд брю" : "Эспрессо двойной", note:"основа напитка", price:0, hex:"#3A2214", w:1.6, kcal:5, caff:0, sweet:0, base:true},
-    {id:"milk", e:"\u{1F95B}", n: cold ? "Вода и лёд" : "Молоко 3.2%", note:"основа напитка", price:0, hex: cold?"#CFE3EC":"#EFE0C8", w: cold?0.6:1.2, kcal:0, caff:0, sweet:0, base:true}
+    {id:"shot", e:"☕", n: cold ? "Колд брю" : "Эспрессо", note:"основа", price:0, hex:"#3A2214", w:1.6, kcal:5, caff:0, sweet:0, base:true},
+    {id:"milk", e:"\u{1F95B}", n: cold ? "Вода и лёд" : "Молоко", note:"основа", price:0, hex: cold?"#CFE3EC":"#EFE0C8", w: cold?0.6:1.2, kcal:0, caff:0, sweet:0, base:true}
   ]);
   const EXTRAS = [
-    {id:"shot2", e:"⚡", n:"Дополнительный шот", note:"плюс 70 мг кофеина", price:70, hex:"#2B170E", w:.5, kcal:5, caff:70, sweet:0},
-    {id:"altmilk", e:"\u{1F965}", n:"Альтернативное молоко", note:"овсяное или кокосовое", price:60, hex:"#E6D9C2", w:.5, kcal:40, caff:0, sweet:1},
-    {id:"gold", e:"✨", n:"Съедобная пудра", note:"блеск на пенке для фото", price:90, hex:"#E2B33C", w:.35, kcal:20, caff:0, sweet:1}
+    {id:"shot2", e:"⚡", n:"Доп. шот", note:"+70 мг кофеина", price:70, hex:"#2B170E", w:.5, kcal:5, caff:70, sweet:0},
+    {id:"altmilk", e:"\u{1F965}", n:"Альт. молоко", note:"овсяное", price:60, hex:"#E6D9C2", w:.5, kcal:40, caff:0, sweet:1},
+    {id:"gold", e:"✨", n:"Пудра", note:"блеск на пенке", price:90, hex:"#E2B33C", w:.35, kcal:20, caff:0, sweet:1}
   ];
   const artIng = art => ({
-    id:"latteart", e:"\u{1F3A8}", n:"Рисунок на пенке", note:"тематический латте-арт, наливает бариста",
+    id:"latteart", e:"\u{1F3A8}", n:"Рисунок", note:"латте-арт под тему",
     price:90, hex:null, w:0, kcal:0, caff:0, sweet:0, art:art
   });
 
@@ -375,54 +464,54 @@
       names:["Сине-гранатовый дубль","Гол на 90+3","Дерби навынос","Трибуна Б, ряд 7"],
       desc:"Вишня бьёт на последней минуте, тёмный шоколад держит счёт, солёная карамель не даёт расслабиться. На пенке — мяч в клубных цветах.",
       ings:[
-        {id:"cherry", e:"\u{1F352}", n:"Вишнёвый сироп", note:"гранатовый слой и кислинка", price:60, hex:"#B3153C", w:1.1, kcal:60, caff:0, sweet:2},
-        {id:"choc", e:"\u{1F36B}", n:"Тёмный шоколад", note:"плотный корпус и горечь", price:70, hex:"#3B2116", w:.9, kcal:90, caff:10, sweet:1},
-        {id:"salt", e:"\u{1F9C2}", n:"Солёная карамель", note:"солёный акцент в финале", price:50, hex:"#C98A3A", w:.5, kcal:80, caff:0, sweet:2}
+        {id:"cherry", e:"\u{1F352}", n:"Вишня", note:"гранатовый слой", price:60, hex:"#B3153C", w:1.1, kcal:60, caff:0, sweet:2},
+        {id:"choc", e:"\u{1F36B}", n:"Шоколад", note:"плотный корпус", price:70, hex:"#3B2116", w:.9, kcal:90, caff:10, sweet:1},
+        {id:"salt", e:"\u{1F9C2}", n:"Карамель", note:"солёный финал", price:50, hex:"#C98A3A", w:.5, kcal:80, caff:0, sweet:2}
       ]},
     { id:"anime", serve:"ceramic", art:"flower", tag:"Аниме",
       keys:["аниме","манга","сакура","токио","ниндзя","кавай","опенинг","наруто","геншин"],
       names:["Сакура в три часа ночи","Опенинг на повторе","Розовый филлер"],
       desc:"Личи и ваниль поверх мягкого эспрессо. Розовая пенка, на ней бариста рисует цветок — держится до последнего глотка.",
       ings:[
-        {id:"lychee", e:"\u{1F338}", n:"Сироп личи", note:"главный цветочный тон", price:65, hex:"#E2568D", w:1.1, kcal:70, caff:0, sweet:3},
-        {id:"vanilla", e:"\u{1F376}", n:"Ваниль", note:"смягчает кислотность", price:45, hex:"#EBD9B4", w:.5, kcal:40, caff:0, sweet:2},
-        {id:"purple", e:"\u{1F49C}", n:"Фиолетовый слой", note:"градиент от розового к сливе", price:60, hex:"#8A3F9E", w:.9, kcal:30, caff:0, sweet:1}
+        {id:"lychee", e:"\u{1F338}", n:"Личи", note:"цветочный тон", price:65, hex:"#E2568D", w:1.1, kcal:70, caff:0, sweet:3},
+        {id:"vanilla", e:"\u{1F376}", n:"Ваниль", note:"мягкость", price:45, hex:"#EBD9B4", w:.5, kcal:40, caff:0, sweet:2},
+        {id:"purple", e:"\u{1F49C}", n:"Слива", note:"градиент цвета", price:60, hex:"#8A3F9E", w:.9, kcal:30, caff:0, sweet:1}
       ]},
     { id:"cyber", serve:"iced", art:"leaf", tag:"Дедлайн",
       keys:["кибер","хакер","код","дедлайн","работа","неон","матрица","релиз","разраб","коммит","учёб","сесси","экзамен","не спать"],
       names:["Релиз в пятницу","Ночная сборка","Коммит без тестов"],
       desc:"Максимум кофеина, минимум сахара. Холодная база на льду, матча для второго дыхания, карамель, чтобы вкус держал внимание.",
       ings:[
-        {id:"matcha", e:"\u{1F375}", n:"Матча церемониальная", note:"зелёный слой и +35 мг кофеина", price:90, hex:"#17C6A3", w:1.1, kcal:20, caff:35, sweet:0},
-        {id:"caramel", e:"\u{1F36F}", n:"Солёная карамель", note:"единственная сладость здесь", price:50, hex:"#C98A3A", w:.5, kcal:80, caff:0, sweet:2},
-        {id:"neon", e:"\u{1F7E3}", n:"Неоновый слой", note:"фиолетовая полоса по стенке", price:60, hex:"#7A3BFF", w:.8, kcal:25, caff:0, sweet:1}
+        {id:"matcha", e:"\u{1F375}", n:"Матча", note:"+35 мг кофеина", price:90, hex:"#17C6A3", w:1.1, kcal:20, caff:35, sweet:0},
+        {id:"caramel", e:"\u{1F36F}", n:"Карамель", note:"единственная сладость", price:50, hex:"#C98A3A", w:.5, kcal:80, caff:0, sweet:2},
+        {id:"neon", e:"\u{1F7E3}", n:"Неон", note:"полоса по стенке", price:60, hex:"#7A3BFF", w:.8, kcal:25, caff:0, sweet:1}
       ]},
     { id:"winter", serve:"ceramic", art:"snow", tag:"Зима",
       keys:["новый год","зим","снег","ёлк","мороз","праздник","декабрь","корица","имбир","мандарин"],
       names:["Первый снег во дворе","Гирлянда на кухне","Мандарин под шарфом"],
       desc:"Топлёное молоко, мандариновая цедра и имбирь. Корицей по трафарету на пенке выводят снежинку.",
       ings:[
-        {id:"mandarin", e:"\u{1F34A}", n:"Мандариновый сироп", note:"рыжий тон и цитрус", price:60, hex:"#E2731B", w:1.0, kcal:65, caff:0, sweet:2},
-        {id:"ginger", e:"\u{1FADA}", n:"Имбирь", note:"согревающая острота", price:55, hex:"#D8A855", w:.6, kcal:15, caff:0, sweet:0},
-        {id:"honey", e:"\u{1F36F}", n:"Мёд вместо сахара", note:"мягкая сладость", price:50, hex:"#E0B34A", w:.5, kcal:70, caff:0, sweet:3}
+        {id:"mandarin", e:"\u{1F34A}", n:"Мандарин", note:"рыжий тон", price:60, hex:"#E2731B", w:1.0, kcal:65, caff:0, sweet:2},
+        {id:"ginger", e:"\u{1FADA}", n:"Имбирь", note:"острота", price:55, hex:"#D8A855", w:.6, kcal:15, caff:0, sweet:0},
+        {id:"honey", e:"\u{1F36F}", n:"Мёд", note:"вместо сахара", price:50, hex:"#E0B34A", w:.5, kcal:70, caff:0, sweet:3}
       ]},
     { id:"forest", serve:"togo", art:"leaf", tag:"Природа",
       keys:["лес","поход","горы","природ","тайга","кедр","озер","туман","дожд","палатк","байкал"],
       names:["Туман над кедрами","Тропа до озера","Утро в палатке"],
       desc:"Кедровое молоко и капля дымного лапсанга: пахнет костром, но остаётся мягким. Классическая розетта на пенке.",
       ings:[
-        {id:"cedar", e:"\u{1F332}", n:"Кедровое молоко", note:"ореховый корпус", price:80, hex:"#6FA36B", w:1.0, kcal:90, caff:0, sweet:1},
-        {id:"smoke", e:"\u{1F525}", n:"Дымный лапсанг", note:"запах костра", price:70, hex:"#4A3A2A", w:.8, kcal:5, caff:15, sweet:0},
-        {id:"honey2", e:"\u{1F36F}", n:"Гречишный мёд", note:"тёмная сладость", price:55, hex:"#C98A3A", w:.5, kcal:70, caff:0, sweet:3}
+        {id:"cedar", e:"\u{1F332}", n:"Кедр", note:"ореховый корпус", price:80, hex:"#6FA36B", w:1.0, kcal:90, caff:0, sweet:1},
+        {id:"smoke", e:"\u{1F525}", n:"Лапсанг", note:"запах костра", price:70, hex:"#4A3A2A", w:.8, kcal:5, caff:15, sweet:0},
+        {id:"honey2", e:"\u{1F36F}", n:"Мёд", note:"тёмная сладость", price:55, hex:"#C98A3A", w:.5, kcal:70, caff:0, sweet:3}
       ]},
     { id:"music", serve:"togo", art:"note", tag:"Музыка",
       keys:["музык","рок","рэп","джаз","концерт","гитар","бит","плейлист","винил","альбом","depeche","радиохед"],
       names:["Винил на 33 оборота","Соло на бис","Бас в правом ухе"],
       desc:"Вкус на три такта: патока, дым жжёного сахара, апельсиновая горечь. На пенке — нота, выведенная питчером.",
       ings:[
-        {id:"molasses", e:"\u{1F36B}", n:"Патока", note:"тёмная густая основа", price:60, hex:"#43281A", w:1.0, kcal:85, caff:0, sweet:3},
-        {id:"burnt", e:"\u{1F525}", n:"Жжёный сахар", note:"карамелизуем при выдаче", price:70, hex:"#E0573E", w:.8, kcal:60, caff:0, sweet:2},
-        {id:"orange", e:"\u{1F34A}", n:"Апельсиновый биттер", note:"горечь в послевкусии", price:55, hex:"#F0B429", w:.6, kcal:10, caff:0, sweet:0}
+        {id:"molasses", e:"\u{1F36B}", n:"Патока", note:"густая основа", price:60, hex:"#43281A", w:1.0, kcal:85, caff:0, sweet:3},
+        {id:"burnt", e:"\u{1F525}", n:"Жжёный сахар", note:"карамелизуем", price:70, hex:"#E0573E", w:.8, kcal:60, caff:0, sweet:2},
+        {id:"orange", e:"\u{1F34A}", n:"Биттер", note:"горечь в финале", price:55, hex:"#F0B429", w:.6, kcal:10, caff:0, sweet:0}
       ]},
     { id:"love", serve:"ceramic", art:"heart", tag:"Подарок",
       keys:["любов","свидан","подар","роман","сердц","валентин","годовщин","8 март"],
@@ -430,66 +519,64 @@
       desc:"Мягкий флэт уайт на белом шоколаде с каплей розовой воды. Сердце на пенке держится, пока его не сфотографируют.",
       ings:[
         {id:"white", e:"\u{1F90D}", n:"Белый шоколад", note:"кремовая база", price:70, hex:"#EFDFC8", w:1.0, kcal:110, caff:0, sweet:3},
-        {id:"rasp", e:"\u{1F353}", n:"Малиновая пудра", note:"розовый тон и кислинка", price:60, hex:"#E86A7C", w:.9, kcal:20, caff:0, sweet:1},
-        {id:"rose", e:"\u{1F339}", n:"Розовая вода", note:"тонкий цветочный аромат", price:65, hex:"#7E1B3A", w:.6, kcal:0, caff:0, sweet:0}
+        {id:"rasp", e:"\u{1F353}", n:"Малина", note:"розовый тон", price:60, hex:"#E86A7C", w:.9, kcal:20, caff:0, sweet:1},
+        {id:"rose", e:"\u{1F339}", n:"Роза", note:"аромат", price:65, hex:"#7E1B3A", w:.6, kcal:0, caff:0, sweet:0}
       ]},
     { id:"sea", serve:"iced", art:"wave", tag:"Море",
       keys:["море","моря","морю","морск","пляж","волн","отпуск","океан","серф","сочи","бали","прибой"],
       names:["Волна в шесть утра","Соль на плечах","Пирс, конец августа"],
       desc:"Колд брю с кокосом и морской солью, слоями от песочного к бирюзовому. Слои перемешиваются постепенно.",
       ings:[
-        {id:"coco", e:"\u{1F965}", n:"Кокосовое молоко", note:"песочный нижний слой", price:75, hex:"#EFE3CB", w:1.0, kcal:95, caff:0, sweet:2},
-        {id:"blue", e:"\u{1F30A}", n:"Бирюзовый сироп", note:"верхний слой цвета воды", price:65, hex:"#3FC0D8", w:1.1, kcal:60, caff:0, sweet:2},
-        {id:"seasalt", e:"\u{1F9C2}", n:"Морская соль", note:"солёный край бокала", price:40, hex:"#DCE9EF", w:.4, kcal:0, caff:0, sweet:0}
+        {id:"coco", e:"\u{1F965}", n:"Кокос", note:"песочный слой", price:75, hex:"#EFE3CB", w:1.0, kcal:95, caff:0, sweet:2},
+        {id:"blue", e:"\u{1F30A}", n:"Бирюза", note:"цвет воды", price:65, hex:"#3FC0D8", w:1.1, kcal:60, caff:0, sweet:2},
+        {id:"seasalt", e:"\u{1F9C2}", n:"Соль", note:"край бокала", price:40, hex:"#DCE9EF", w:.4, kcal:0, caff:0, sweet:0}
       ]},
     { id:"space", serve:"iced", art:"star", tag:"Космос",
       keys:["космос","звёзд","звезд","марс","луна","галактик","ракет","дюна","интерстел","орбит"],
       names:["Пыль на кольцах Сатурна","Смена на орбите","Тишина на тёмной стороне"],
       desc:"Тёмно-синяя база с черникой и лавандой: цвет уходит в фиолет ко дну, сверху остаётся молочная дымка.",
       ings:[
-        {id:"blueberry", e:"\u{1FAD0}", n:"Черничный сироп", note:"глубокий синий тон", price:70, hex:"#3B3BA8", w:1.1, kcal:65, caff:0, sweet:2},
-        {id:"lavender", e:"\u{1F49C}", n:"Лаванда", note:"фиолетовый край и аромат", price:65, hex:"#7B5BD6", w:.9, kcal:10, caff:0, sweet:1},
-        {id:"milkyway", e:"\u{1F32B}", n:"Молочная дымка", note:"белая вуаль сверху", price:55, hex:"#CBD8F2", w:.6, kcal:35, caff:0, sweet:1}
+        {id:"blueberry", e:"\u{1FAD0}", n:"Черника", note:"глубокий синий", price:70, hex:"#3B3BA8", w:1.1, kcal:65, caff:0, sweet:2},
+        {id:"lavender", e:"\u{1F49C}", n:"Лаванда", note:"фиолетовый край", price:65, hex:"#7B5BD6", w:.9, kcal:10, caff:0, sweet:1},
+        {id:"milkyway", e:"\u{1F32B}", n:"Дымка", note:"белая вуаль", price:55, hex:"#CBD8F2", w:.6, kcal:35, caff:0, sweet:1}
       ]}
   ];
-  // вкусы с ролью в напитке и готовыми формулировками — из них собирается описание
+
   const GENERIC = [
-    {id:"g1", e:"\u{1F36B}", n:"Тёмный шоколад", note:"плотность и горечь", price:70, hex:"#3B2116", w:.9, kcal:90, caff:10, sweet:1,
+    {id:"g1", e:"\u{1F36B}", n:"Шоколад", note:"плотность и горечь", price:70, hex:"#3B2116", w:.9, kcal:90, caff:10, sweet:1,
      role:"base", tr:["dark","warm","sweet","slow"],
      lines:["тёмный шоколад задаёт плотный корпус","шоколад тянет вкус вниз, в горечь"]},
-    {id:"g7", e:"\u{1F95C}", n:"Ореховая паста", note:"плотный ореховый корпус", price:70, hex:"#9C7346", w:.8, kcal:110, caff:0, sweet:1,
+    {id:"g7", e:"\u{1F95C}", n:"Орех", note:"густая текстура", price:70, hex:"#9C7346", w:.8, kcal:110, caff:0, sweet:1,
      role:"base", tr:["warm","slow","sweet"],
      lines:["ореховая паста делает текстуру густой","орех держит напиток тяжёлым и мягким одновременно"]},
-    {id:"g8", e:"\u{1F375}", n:"Матча", note:"зелёный тон и кофеин", price:90, hex:"#17C6A3", w:1.0, kcal:20, caff:35, sweet:0,
+    {id:"g8", e:"\u{1F375}", n:"Матча", note:"травяная база", price:90, hex:"#17C6A3", w:1.0, kcal:20, caff:35, sweet:0,
      role:"base", tr:["cold","fast","sharp"],
      lines:["матча ставит травяную базу и добавляет кофеина","матча даёт горечь без тяжести"]},
-    {id:"g9", e:"\u{1F36F}", n:"Патока", note:"тёмная густая основа", price:60, hex:"#43281A", w:1.0, kcal:85, caff:0, sweet:3,
+    {id:"g9", e:"\u{1F36F}", n:"Патока", note:"тёмная основа", price:60, hex:"#43281A", w:1.0, kcal:85, caff:0, sweet:3,
      role:"base", tr:["dark","sweet","slow"],
      lines:["патока даёт тёмную густую основу","патока тянет вкус в жжёную сладость"]},
-
-    {id:"g2", e:"\u{1F352}", n:"Вишнёвый сироп", note:"красный тон и кислинка", price:60, hex:"#B3153C", w:1.0, kcal:60, caff:0, sweet:2,
+    {id:"g2", e:"\u{1F352}", n:"Вишня", note:"кислая вспышка", price:60, hex:"#B3153C", w:1.0, kcal:60, caff:0, sweet:2,
      role:"mid", tr:["dark","sharp","sweet"],
      lines:["вишня бьёт кислой вспышкой в середине","вишнёвый сироп красит напиток и ломает сладость кислотой"]},
-    {id:"g6", e:"\u{1FAD0}", n:"Черника", note:"синий слой", price:65, hex:"#3B3BA8", w:1.0, kcal:65, caff:0, sweet:2,
+    {id:"g6", e:"\u{1FAD0}", n:"Черника", note:"синяя глубина", price:65, hex:"#3B3BA8", w:1.0, kcal:65, caff:0, sweet:2,
      role:"mid", tr:["dark","cold","slow"],
      lines:["черника уводит цвет в синий и добавляет ягодной глубины","черника держит середину тёмной и сладковатой"]},
-    {id:"g10", e:"\u{1F353}", n:"Малиновая пудра", note:"розовый тон и кислинка", price:60, hex:"#E86A7C", w:.9, kcal:20, caff:0, sweet:1,
+    {id:"g10", e:"\u{1F353}", n:"Малина", note:"ягодная нота", price:60, hex:"#E86A7C", w:.9, kcal:20, caff:0, sweet:1,
      role:"mid", tr:["bright","sweet","sharp"],
      lines:["малина поднимает середину и красит пенку","малиновая пудра добавляет кислую ягодную ноту"]},
     {id:"g4", e:"\u{1F36F}", n:"Мёд", note:"мягкая сладость", price:50, hex:"#E0B34A", w:.5, kcal:70, caff:0, sweet:3,
      role:"mid", tr:["warm","slow","sweet"],
      lines:["мёд сглаживает углы вместо сахара","мёд смягчает середину и держит её тёплой"]},
-    {id:"g11", e:"\u{1F376}", n:"Ваниль", note:"кремовая мягкость", price:45, hex:"#EBD9B4", w:.5, kcal:40, caff:0, sweet:2,
+    {id:"g11", e:"\u{1F376}", n:"Ваниль", note:"кремовость", price:45, hex:"#EBD9B4", w:.5, kcal:40, caff:0, sweet:2,
      role:"mid", tr:["warm","sweet","slow","bright"],
      lines:["ваниль делает середину кремовой","ваниль убирает резкость и округляет вкус"]},
-
-    {id:"g3", e:"\u{1F34A}", n:"Апельсиновая цедра", note:"цитрусовый хвост", price:45, hex:"#E2731B", w:.7, kcal:10, caff:0, sweet:0,
+    {id:"g3", e:"\u{1F34A}", n:"Цедра", note:"цитрусовый хвост", price:45, hex:"#E2731B", w:.7, kcal:10, caff:0, sweet:0,
      role:"end", tr:["bright","fast","sharp","warm"],
      lines:["апельсиновая цедра оставляет горький цитрусовый хвост","цедра вытягивает послевкусие в цитрус"]},
-    {id:"g5", e:"\u{1F33F}", n:"Мята", note:"свежесть в финале", price:45, hex:"#4FA86B", w:.7, kcal:5, caff:0, sweet:0,
+    {id:"g5", e:"\u{1F33F}", n:"Мята", note:"холодный финал", price:45, hex:"#4FA86B", w:.7, kcal:5, caff:0, sweet:0,
      role:"end", tr:["cold","fast","bright"],
      lines:["мята закрывает вкус холодной свежестью","мята обрывает сладость в конце"]},
-    {id:"g12", e:"\u{1F9C2}", n:"Морская соль", note:"солёный акцент", price:40, hex:"#DCE9EF", w:.4, kcal:0, caff:0, sweet:0,
+    {id:"g12", e:"\u{1F9C2}", n:"Соль", note:"длинный финал", price:40, hex:"#DCE9EF", w:.4, kcal:0, caff:0, sweet:0,
      role:"end", tr:["sharp","cold","dark","fast"],
      lines:["щепотка соли делает финал длиннее","соль вытаскивает вкус наружу и не даёт ему осыпаться"]},
     {id:"g13", e:"\u{1F330}", n:"Корица", note:"пряный аромат", price:45, hex:"#8A5A32", w:.7, kcal:10, caff:0, sweet:0,
@@ -500,7 +587,6 @@
      lines:["лайм режет финал кислотой","лайм оставляет короткий кислый хвост"]}
   ];
 
-  // характер фразы: по словам угадываем настроение и под него подбираем вкусы
   const TRAITS = [
     {id:"dark", mood:"что-то тёмное и негромкое",
      keys:["ноч","тьм","тёмн","темн","чёрн","черн","нуар","гроз","шторм","мрак","полноч","ворон","готик","подвал","дожд","осен","один"],
@@ -535,7 +621,6 @@
      base:["кислая и колючая","яркая, с резким краем","бодрая и неудобная"],
      tail:["на повышенных","без компромиссов","в лоб"]}
   ];
-
   const ARTS = ["heart","leaf","tulip","star","flower"];
 
   /* ================= генерация ================= */
@@ -555,7 +640,6 @@
       art = ARTS[h % ARTS.length];
       const label = q ? q[0].toUpperCase()+q.slice(1) : "Без названия";
 
-      // характер фразы: прямое попадание по словам, иначе трактовка от хеша
       let hit = null, hitLen = 0;
       TRAITS.forEach(t => t.keys.forEach(k => {
         if(low.indexOf(k) >= 0 && k.length > hitLen){ hit = t; hitLen = k.length; }
@@ -563,14 +647,12 @@
       const tr = hit || TRAITS[h % TRAITS.length];
       const read = hit ? "звучит как" : "читается как";
 
-      // подача идёт от характера, а не от монетки
       serve = (tr.id === "cold" || tr.id === "fast" || tr.id === "sharp")
                 ? (r() > .45 ? "iced" : "togo")
                 : (tr.id === "slow" || tr.id === "warm" || tr.id === "sweet")
                   ? (r() > .4 ? "ceramic" : "togo")
                   : (r() > .6 ? "ceramic" : "togo");
 
-      // по одному вкусу на роль, с предпочтением к характеру
       const byRole = role => {
         const all = GENERIC.filter(x => x.role === role);
         const fit = all.filter(x => x.tr.indexOf(tr.id) >= 0);
@@ -637,7 +719,7 @@
   const hasArt = d => activeIngs(d).some(i => i.art);
 
   /* ================= 3D ================= */
-  const stage = $("#cupstage"), canvas = $("#scene");
+  const stage = $("#stage"), canvas = $("#scene");
   let three = null, clock = 0;
 
   function noiseTexture(){
@@ -650,15 +732,24 @@
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6,3);
     return t;
   }
-
   function puffTexture(){
     const c = document.createElement("canvas"); c.width = c.height = 128;
     const g = c.getContext("2d");
     const rg = g.createRadialGradient(64,64,2, 64,64,62);
-    rg.addColorStop(0,"rgba(255,255,255,.85)");
-    rg.addColorStop(.45,"rgba(255,255,255,.28)");
+    rg.addColorStop(0,"rgba(255,255,255,.7)");
+    rg.addColorStop(.45,"rgba(255,255,255,.22)");
     rg.addColorStop(1,"rgba(255,255,255,0)");
     g.fillStyle = rg; g.fillRect(0,0,128,128);
+    return new THREE.CanvasTexture(c);
+  }
+  function dotTexture(){
+    const c = document.createElement("canvas"); c.width = c.height = 64;
+    const g = c.getContext("2d");
+    const rg = g.createRadialGradient(32,32,0, 32,32,32);
+    rg.addColorStop(0,"rgba(255,255,255,1)");
+    rg.addColorStop(.35,"rgba(255,255,255,.5)");
+    rg.addColorStop(1,"rgba(255,255,255,0)");
+    g.fillStyle = rg; g.fillRect(0,0,64,64);
     return new THREE.CanvasTexture(c);
   }
 
@@ -668,7 +759,7 @@
     const lin = g.createLinearGradient(0,0,1024,256);
     lin.addColorStop(0, shade(pal[0],-.1)); lin.addColorStop(.6, pal[0]); lin.addColorStop(1, shade(pal[1],-.15));
     g.fillStyle = lin; g.fillRect(0,0,1024,256);
-    g.globalAlpha = .13; g.fillStyle = "#FFFFFF";
+    g.globalAlpha = .12; g.fillStyle = "#FFFFFF";
     for(let x=0;x<1024;x+=7) g.fillRect(x,0,3,256);
     g.globalAlpha = .3; g.fillStyle = "#000000";
     g.fillRect(0,0,1024,8); g.fillRect(0,248,1024,8);
@@ -676,31 +767,24 @@
     return t;
   }
 
-  /* --- латте-арт --- */
   function drawArt(g, kind, cx, cy, S, col){
-    g.save();
-    g.translate(cx, cy);
-    g.fillStyle = col; g.strokeStyle = col;
-    g.lineJoin = "round"; g.lineCap = "round";
+    g.save(); g.translate(cx, cy);
+    g.fillStyle = col; g.strokeStyle = col; g.lineJoin = "round"; g.lineCap = "round";
     if(kind === "heart"){
-      g.beginPath();
-      g.moveTo(0, S*.72);
+      g.beginPath(); g.moveTo(0, S*.72);
       g.bezierCurveTo(-S*1.05, S*.05, -S*.62, -S*.78, 0, -S*.26);
-      g.bezierCurveTo(S*.62, -S*.78, S*1.05, S*.05, 0, S*.72);
-      g.fill();
+      g.bezierCurveTo(S*.62, -S*.78, S*1.05, S*.05, 0, S*.72); g.fill();
     }else if(kind === "leaf"){
       for(let i=0;i<7;i++){
         const t = i/6, w = S*(0.92 - t*0.62), y = -S*0.72 + t*S*1.3;
         g.beginPath(); g.ellipse(0, y, w, S*0.19, 0, 0, 6.29); g.fill();
       }
-      g.lineWidth = S*.09;
-      g.beginPath(); g.moveTo(0, S*.55); g.lineTo(0, S*1.05); g.stroke();
+      g.lineWidth = S*.09; g.beginPath(); g.moveTo(0, S*.55); g.lineTo(0, S*1.05); g.stroke();
     }else if(kind === "tulip"){
       [[0,-S*.55,S*.52],[0,-S*.02,S*.4],[0,S*.38,S*.28]].forEach(p=>{
         g.beginPath(); g.arc(p[0],p[1],p[2],0,6.29); g.fill();
       });
-      g.lineWidth = S*.1;
-      g.beginPath(); g.moveTo(0,S*.6); g.lineTo(0,S*1.0); g.stroke();
+      g.lineWidth = S*.1; g.beginPath(); g.moveTo(0,S*.6); g.lineTo(0,S*1.0); g.stroke();
     }else if(kind === "star"){
       g.beginPath();
       for(let i=0;i<10;i++){
@@ -711,14 +795,12 @@
     }else if(kind === "flower"){
       for(let i=0;i<6;i++){
         const a = i*Math.PI/3;
-        g.beginPath();
-        g.ellipse(Math.cos(a)*S*.5, Math.sin(a)*S*.5, S*.42, S*.26, a, 0, 6.29);
-        g.fill();
+        g.beginPath(); g.ellipse(Math.cos(a)*S*.5, Math.sin(a)*S*.5, S*.42, S*.26, a, 0, 6.29); g.fill();
       }
       g.beginPath(); g.arc(0,0,S*.22,0,6.29); g.fill();
     }else if(kind === "ball"){
       g.beginPath(); g.arc(0,0,S*.92,0,6.29); g.fill();
-      g.save(); g.globalCompositeOperation = "destination-out";
+      g.save(); g.globalCompositeOperation = "destination-out"; g.fillStyle = "#000";
       const pent = (x,y,r,rot)=>{
         g.beginPath();
         for(let i=0;i<5;i++){
@@ -727,12 +809,8 @@
         }
         g.closePath(); g.fill();
       };
-      g.fillStyle = "#000";
-      pent(0, 0, S*.3, -Math.PI/2);
-      for(let i=0;i<5;i++){
-        const a = -Math.PI/2 + i*2*Math.PI/5;
-        pent(Math.cos(a)*S*.62, Math.sin(a)*S*.62, S*.2, a);
-      }
+      pent(0,0,S*.3,-Math.PI/2);
+      for(let i=0;i<5;i++){ const a = -Math.PI/2 + i*2*Math.PI/5; pent(Math.cos(a)*S*.62, Math.sin(a)*S*.62, S*.2, a); }
       g.restore();
     }else if(kind === "wave"){
       g.lineWidth = S*.16;
@@ -750,8 +828,7 @@
       g.lineWidth = S*.12;
       g.beginPath(); g.moveTo(0, S*.5); g.lineTo(0, -S*.75);
       g.moveTo(S*.82, S*.26); g.lineTo(S*.82, -S*.98); g.stroke();
-      g.lineWidth = S*.2;
-      g.beginPath(); g.moveTo(0,-S*.72); g.lineTo(S*.82,-S*.95); g.stroke();
+      g.lineWidth = S*.2; g.beginPath(); g.moveTo(0,-S*.72); g.lineTo(S*.82,-S*.95); g.stroke();
     }else if(kind === "snow"){
       g.lineWidth = S*.12;
       for(let i=0;i<6;i++){
@@ -778,9 +855,7 @@
     rad.addColorStop(.6, pal[1]);
     rad.addColorStop(1, shade(pal[0], -.08));
     g.fillStyle = rad; g.fillRect(0,0,512,512);
-
     if(!cold){
-      // пенка: мелкие пузырьки и кольцо кремы
       g.globalAlpha = .1; g.fillStyle = "#FFFFFF";
       for(let i=0;i<220;i++){
         const a = Math.random()*6.29, r = Math.sqrt(Math.random())*236;
@@ -802,31 +877,42 @@
     return t;
   }
 
+  // тёмное окружение: предмет читается отражениями, а не заливкой
   function envTexture(){
     const c = document.createElement("canvas"); c.width = 1024; c.height = 512;
     const g = c.getContext("2d");
     const lin = g.createLinearGradient(0,0,0,512);
-    lin.addColorStop(0,"#ffffff"); lin.addColorStop(.42,"#ececf4"); lin.addColorStop(.62,"#c9c9d8"); lin.addColorStop(1,"#8f8fa6");
+    lin.addColorStop(0,"#3A3E52"); lin.addColorStop(.42,"#1A1C28"); lin.addColorStop(.7,"#0B0C12"); lin.addColorStop(1,"#05050A");
     g.fillStyle = lin; g.fillRect(0,0,1024,512);
-    const soft=(x,y,w,h,a)=>{
-      const rg = g.createRadialGradient(x+w/2,y+h/2,0, x+w/2,y+h/2,Math.max(w,h)/1.6);
-      rg.addColorStop(0,"rgba(255,255,255,"+a+")"); rg.addColorStop(1,"rgba(255,255,255,0)");
+    const soft=(x,y,w,h,col,a)=>{
+      const rg = g.createRadialGradient(x+w/2,y+h/2,0, x+w/2,y+h/2,Math.max(w,h)/1.5);
+      rg.addColorStop(0,col.replace("A", a)); rg.addColorStop(1,"rgba(0,0,0,0)");
       g.fillStyle = rg; g.fillRect(x-w,y-h,w*3,h*3);
     };
-    soft(180,20,320,150,1); soft(700,60,200,110,.75); soft(430,300,260,120,.3);
+    soft(150,10,300,150,"rgba(255,255,255,A)",".95");
+    soft(700,40,200,110,"rgba(120,160,255,A)",".55");
+    soft(420,250,300,140,"rgba(150,92,255,A)",".22");
     const t = new THREE.CanvasTexture(c);
     t.mapping = THREE.EquirectangularReflectionMapping; t.encoding = THREE.sRGBEncoding;
     return t;
   }
-
   function blobTexture(){
     const c = document.createElement("canvas"); c.width = c.height = 256;
     const g = c.getContext("2d");
     const rg = g.createRadialGradient(128,128,8, 128,128,126);
-    rg.addColorStop(0,"rgba(42,36,62,.42)"); rg.addColorStop(.55,"rgba(42,36,62,.16)"); rg.addColorStop(1,"rgba(42,36,62,0)");
+    rg.addColorStop(0,"rgba(0,0,0,.55)"); rg.addColorStop(.55,"rgba(0,0,0,.2)"); rg.addColorStop(1,"rgba(0,0,0,0)");
     g.fillStyle = rg; g.fillRect(0,0,256,256);
-    const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
-    return t;
+    return new THREE.CanvasTexture(c);
+  }
+  function glowTexture(){
+    const c = document.createElement("canvas"); c.width = c.height = 256;
+    const g = c.getContext("2d");
+    const rg = g.createRadialGradient(128,128,4, 128,128,126);
+    rg.addColorStop(0,"rgba(255,255,255,.85)");
+    rg.addColorStop(.35,"rgba(255,255,255,.28)");
+    rg.addColorStop(1,"rgba(255,255,255,0)");
+    g.fillStyle = rg; g.fillRect(0,0,256,256);
+    return new THREE.CanvasTexture(c);
   }
 
   function initThree(){
@@ -837,7 +923,7 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.02;
+    renderer.toneMappingExposure = 1.05;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -847,8 +933,8 @@
     const camera = new THREE.PerspectiveCamera(27, 1, 0.1, 100);
     camera.position.set(0, 5.4, 12.4);
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xc4c4e0, 0.7));
-    const key = new THREE.DirectionalLight(0xffffff, 1.25);
+    scene.add(new THREE.HemisphereLight(0x8899cc, 0x0a0a12, 0.5));
+    const key = new THREE.DirectionalLight(0xffffff, 1.35);
     key.position.set(4.2, 8.5, 5.2);
     key.castShadow = true;
     key.shadow.mapSize.set(2048,2048);
@@ -857,20 +943,44 @@
     key.shadow.camera.top = 7; key.shadow.camera.bottom = -3;
     key.shadow.bias = -0.0009; key.shadow.radius = 3;
     scene.add(key);
-    const f1 = new THREE.DirectionalLight(0xd9dcff, 0.5); f1.position.set(-6,3.5,-3); scene.add(f1);
-    const f2 = new THREE.DirectionalLight(0xffffff, 0.65); f2.position.set(-1.5,5,-7); scene.add(f2);
+    const rimA = new THREE.DirectionalLight(0x5c7cff, 1.0); rimA.position.set(-7,3.5,-3); scene.add(rimA);
+    const rimB = new THREE.DirectionalLight(0xffffff, 0.5);  rimB.position.set(-1.5,5,-7); scene.add(rimB);
+    const tint = new THREE.PointLight(0xffffff, 0.0, 14);    tint.position.set(0,3.2,2.4); scene.add(tint);
 
-    const floor = new THREE.Mesh(new THREE.PlaneGeometry(40,40), new THREE.ShadowMaterial({opacity:0.16}));
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(40,40), new THREE.ShadowMaterial({opacity:0.34}));
     floor.rotation.x = -Math.PI/2; floor.receiveShadow = true; scene.add(floor);
 
     const blob = new THREE.Mesh(new THREE.PlaneGeometry(6.4,6.4),
       new THREE.MeshBasicMaterial({map:blobTexture(), transparent:true, depthWrite:false}));
-    blob.rotation.x = -Math.PI/2; blob.position.y = 0.006; blob.scale.set(1,.62,1);
-    scene.add(blob);
+    blob.rotation.x = -Math.PI/2; blob.position.y = 0.006; blob.scale.set(1,.62,1); scene.add(blob);
+
+    // цветное свечение под предметом — берёт цвет напитка
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(7.2,7.2),
+      new THREE.MeshBasicMaterial({map:glowTexture(), transparent:true, depthWrite:false,
+        blending:THREE.AdditiveBlending, opacity:.28, color:new THREE.Color("#4D7CFF")}));
+    glow.rotation.x = -Math.PI/2; glow.position.y = 0.004; glow.scale.set(1,.5,1); scene.add(glow);
 
     const group = new THREE.Group(); scene.add(group);
 
-    // пар
+    // частицы среды
+    const P = 220;
+    const pg = new THREE.BufferGeometry();
+    const pos = new Float32Array(P*3), spd = new Float32Array(P);
+    for(let i=0;i<P;i++){
+      const a = Math.random()*Math.PI*2, r = 1.6 + Math.random()*4.2;
+      pos[i*3] = Math.cos(a)*r;
+      pos[i*3+1] = Math.random()*7;
+      pos[i*3+2] = Math.sin(a)*r;
+      spd[i] = .12 + Math.random()*.4;
+    }
+    pg.setAttribute("position", new THREE.BufferAttribute(pos,3));
+    const pmat = new THREE.PointsMaterial({
+      size:.075, map:dotTexture(), transparent:true, opacity:.5, depthWrite:false,
+      blending:THREE.AdditiveBlending, color:new THREE.Color("#7FA0FF")
+    });
+    const points = new THREE.Points(pg, pmat);
+    scene.add(points);
+
     const puff = puffTexture();
     const steam = [];
     for(let i=0;i<6;i++){
@@ -880,15 +990,15 @@
       scene.add(sp); steam.push(sp);
     }
 
-    // струя при наливе
     const pour = new THREE.Mesh(
       new THREE.CylinderGeometry(0.048, 0.062, 1, 14, 1, true),
       new THREE.MeshStandardMaterial({color:0x6B4A33, roughness:.25, metalness:0, transparent:true, opacity:.9})
     );
     pour.visible = false; scene.add(pour);
 
-    return {renderer, scene, camera, group, blob, steam, pour, parts:null, noise:noiseTexture(),
-            view:{y:1.86, dist:12.4, fov:27}, camY:5.4, look:new THREE.Vector3(0,1.86,0), par:{x:0,y:0}};
+    return {renderer, scene, camera, group, steam, pour, points, pmat, glow, tint,
+            parts:null, noise:noiseTexture(), spd,
+            view:{y:1.86, dist:12.4, fov:27}, look:new THREE.Vector3(0,1.86,0), par:{x:0,y:0}};
   }
 
   function clearGroup(g){
@@ -907,7 +1017,6 @@
   }
   const V2 = a => a.map(p => new THREE.Vector2(p[0], p[1]));
 
-  // диск с сеткой — по нему бежит рябь
   function liquidDisc(R, mat){
     const geo = new THREE.RingGeometry(0.004, R, 96, 16);
     geo.rotateX(-Math.PI/2);
@@ -923,27 +1032,27 @@
     const parts = {serve:d.serve, cold:d.cold};
     const surfMat = new THREE.MeshStandardMaterial({
       map: surfaceTexture(pal, {art: hasArt(d) ? d.art : null, cold: d.cold}),
-      roughness: d.cold ? 0.13 : 0.62, metalness: d.cold ? 0.05 : 0, envMapIntensity: d.cold ? 1.25 : 0.22,
-      side: THREE.DoubleSide
+      roughness: d.cold ? 0.13 : 0.62, metalness: d.cold ? 0.05 : 0,
+      envMapIntensity: d.cold ? 1.25 : 0.3, side: THREE.DoubleSide
     });
 
     if(d.serve === "togo"){
       const outer = new THREE.Mesh(
         new THREE.LatheGeometry(V2([[0.78,0],[0.82,.06],[0.86,.16],[0.99,1.10],[1.12,2.10],[1.25,3.10],[1.30,3.44]]), 128),
-        new THREE.MeshStandardMaterial({color:0xFDFBF7, roughness:.82, metalness:0, bumpMap:three.noise, bumpScale:.006, envMapIntensity:.35})
+        new THREE.MeshStandardMaterial({color:0xF2F0EC, roughness:.8, metalness:0, bumpMap:three.noise, bumpScale:.006, envMapIntensity:.55})
       );
       outer.castShadow = true; outer.receiveShadow = true; g.add(outer);
 
       const rim = new THREE.Mesh(
         new THREE.LatheGeometry(V2([[1.30,3.44],[1.37,3.50],[1.385,3.57],[1.35,3.625],[1.29,3.615],[1.255,3.56],
           [1.20,3.30],[1.06,2.10],[0.93,1.10],[0.80,0.12],[0,0.09]]), 128),
-        new THREE.MeshStandardMaterial({color:0xF6F0E6, roughness:.72, metalness:0, side:THREE.DoubleSide, envMapIntensity:.5})
+        new THREE.MeshStandardMaterial({color:0xE9E4DA, roughness:.7, metalness:0, side:THREE.DoubleSide, envMapIntensity:.7})
       );
       rim.castShadow = true; g.add(rim);
 
       const sleeveMat = new THREE.MeshStandardMaterial({
         map: sleeveTexture(pal), roughness:.88, metalness:0, bumpMap:three.noise, bumpScale:.012,
-        envMapIntensity:.25, side:THREE.DoubleSide
+        envMapIntensity:.35, side:THREE.DoubleSide
       });
       const sleeve = new THREE.Mesh(new THREE.LatheGeometry(V2([[1.045,1.28],[1.05,1.34],[1.16,2.44],[1.155,2.50]]), 128), sleeveMat);
       sleeve.castShadow = true; sleeve.receiveShadow = true; g.add(sleeve);
@@ -956,7 +1065,7 @@
     }
     else if(d.serve === "ceramic"){
       const porcelain = new THREE.MeshPhysicalMaterial({
-        color:0xFFFFFF, roughness:.16, metalness:0, clearcoat:.8, clearcoatRoughness:.12, envMapIntensity:1.1
+        color:0xF6F6F8, roughness:.14, metalness:0, clearcoat:.9, clearcoatRoughness:.1, envMapIntensity:1.3
       });
       const saucer = new THREE.Mesh(
         new THREE.LatheGeometry(V2([[0,0],[1.5,.03],[1.95,.16],[2.15,.3],[2.2,.38],[2.12,.36],[1.9,.22],[1.45,.11],[0,.08]]), 128),
@@ -974,9 +1083,7 @@
       cup.castShadow = true; cup.receiveShadow = true; g.add(cup);
 
       const handle = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.085, 18, 60, Math.PI*1.45), porcelain);
-      handle.position.set(1.22, 1.42, 0);
-      handle.rotation.z = -0.5;
-      handle.castShadow = true; g.add(handle);
+      handle.position.set(1.22, 1.42, 0); handle.rotation.z = -0.5; handle.castShadow = true; g.add(handle);
 
       const surf = liquidDisc(1.16, surfMat);
       surf.position.y = 1.92; g.add(surf);
@@ -986,8 +1093,8 @@
     }
     else{
       const glassMat = new THREE.MeshPhysicalMaterial({
-        color:0xffffff, roughness:.04, metalness:0, transparent:true, opacity:.18,
-        clearcoat:1, clearcoatRoughness:.03, envMapIntensity:2.4, side:THREE.DoubleSide, depthWrite:false
+        color:0xffffff, roughness:.03, metalness:0, transparent:true, opacity:.22,
+        clearcoat:1, clearcoatRoughness:.02, envMapIntensity:3.0, side:THREE.DoubleSide, depthWrite:false
       });
       const glass = new THREE.Mesh(
         new THREE.LatheGeometry(V2([[0.86,0],[0.90,.10],[0.99,1.20],[1.10,2.60],[1.18,3.66],[1.205,3.74],
@@ -997,8 +1104,8 @@
       glass.castShadow = true; g.add(glass);
 
       const liqMat = new THREE.MeshPhysicalMaterial({
-        color:new THREE.Color(pal[0]), roughness:.16, metalness:0, envMapIntensity:.8,
-        clearcoat:.6, clearcoatRoughness:.2, emissive:new THREE.Color(pal[1]), emissiveIntensity:.06
+        color:new THREE.Color(pal[0]), roughness:.16, metalness:0, envMapIntensity:1.0,
+        clearcoat:.6, clearcoatRoughness:.2, emissive:new THREE.Color(pal[1]), emissiveIntensity:.14
       });
       const liq = new THREE.Mesh(
         new THREE.LatheGeometry(V2([[0,.18],[0.84,.18],[0.95,1.10],[1.06,2.40],[1.12,3.05]]), 96),
@@ -1010,8 +1117,8 @@
       surf.position.y = 3.05; g.add(surf);
 
       const iceMat = new THREE.MeshPhysicalMaterial({
-        color:0xF2FAFF, roughness:.05, metalness:0, transparent:true, opacity:.62,
-        clearcoat:1, clearcoatRoughness:.03, envMapIntensity:1.8
+        color:0xF2FAFF, roughness:.04, metalness:0, transparent:true, opacity:.55,
+        clearcoat:1, clearcoatRoughness:.02, envMapIntensity:2.4
       });
       const seed = rnd(hash(d.title));
       const ice = [];
@@ -1027,7 +1134,7 @@
         g.add(cube); ice.push(cube);
       }
 
-      const strawMat = new THREE.MeshStandardMaterial({color:new THREE.Color(pal[1]), roughness:.3, metalness:.04, envMapIntensity:1});
+      const strawMat = new THREE.MeshStandardMaterial({color:new THREE.Color(pal[1]), roughness:.3, metalness:.04, envMapIntensity:1.2});
       const s1 = new THREE.Mesh(new THREE.CylinderGeometry(.072,.072,3.4,20), strawMat);
       s1.position.set(.34,1.9,.18); s1.rotation.z = -.16; s1.castShadow = true; g.add(s1);
       const s2 = new THREE.Mesh(new THREE.CylinderGeometry(.072,.072,1.5,20), strawMat);
@@ -1039,6 +1146,20 @@
       three.view = {y:1.86, dist:12.4, fov:27};
     }
     three.parts = parts;
+    applyAccent(d);
+  }
+
+  // цвет напитка становится акцентом всего интерфейса
+  function applyAccent(d){
+    const pal = paletteOf(d);
+    const acc = lift(pal[1]);
+    document.documentElement.style.setProperty("--drink", acc);
+    if(three){
+      three.glow.material.color.set(acc);
+      three.pmat.color.set(acc);
+      three.tint.color.set(acc);
+      three.tint.intensity = 0.55;
+    }
   }
 
   function recolor(d){
@@ -1056,10 +1177,10 @@
     }
     if(p.liqMat){ p.liqMat.color.set(pal[0]); p.liqMat.emissive.set(pal[1]); }
     if(p.strawMat) p.strawMat.color.set(pal[1]);
+    applyAccent(d);
     ripple = Math.max(ripple, 0.05);
   }
 
-  /* --- анимация --- */
   let spin = -0.5, dragging = false, lastX = 0, vel = 0, entering = 0;
   let ripple = 0.012, pourT = 0, fillFrom = 0, pourStart = 0;
   const POUR_MS = 950;
@@ -1069,9 +1190,7 @@
     if(!p) return;
     pourT = 1; pourStart = performance.now();
     ripple = 0.075;
-    if(p.serve === "iced" && p.liq){
-      p.liq.scale.y = 0.05; p.liq.position.y = -(1-0.05)*1.6;
-    }
+    if(p.serve === "iced" && p.liq){ p.liq.scale.y = 0.05; p.liq.position.y = -(1-0.05)*1.6; }
     fillFrom = p.level - (p.serve === "ceramic" ? 1.3 : 2.4);
     if(p.surf) p.surf.position.y = fillFrom;
     three.pour.visible = true;
@@ -1096,8 +1215,6 @@
 
     if(!dragging){ vel += (0.0032 - vel)*0.03; spin += vel; } else vel *= 0.9;
     three.group.rotation.y = spin;
-
-    // лёгкое «дыхание» — предмет не выглядит замороженным
     three.group.rotation.z = Math.sin(clock*0.7)*0.008;
     three.group.position.y = Math.sin(clock*0.9)*0.025 + (entering>0 ? (1-Math.pow(1-entering,2))*-0.45 : 0);
 
@@ -1107,7 +1224,6 @@
       three.group.scale.setScalar(0.9 + 0.1*e);
     }
 
-    // камера: плавный переезд под посуду + микропараллакс
     const v = three.view;
     three.camera.fov += (v.fov - three.camera.fov) * Math.min(1, dt*4);
     three.look.y += (v.y - three.look.y) * Math.min(1, dt*4);
@@ -1118,7 +1234,6 @@
     three.camera.lookAt(three.look);
     three.camera.updateProjectionMatrix();
 
-    // налив
     if(pourT > 0 && p){
       const k = Math.min(1, (now - pourStart) / POUR_MS);
       pourT = 1 - k;
@@ -1141,7 +1256,6 @@
       ripple += (idle - ripple) * Math.min(1, dt*1.6);
     }
 
-    // рябь по поверхности
     if(p && p.surf){
       const g = p.surf.geometry, pos = g.attributes.position, base = p.surf.userData.base;
       for(let i=0;i<pos.count;i++){
@@ -1154,7 +1268,6 @@
       g.computeVertexNormals();
     }
 
-    // лёд качается
     if(p && p.ice){
       p.ice.forEach(c=>{
         const u = c.userData;
@@ -1163,21 +1276,34 @@
       });
     }
 
-    // пар
+    // частицы среды поднимаются и уходят по кругу
+    const pa = three.points.geometry.attributes.position;
+    const rush = pourT > 0 ? 3.2 : 1;
+    for(let i=0;i<pa.count;i++){
+      pa.array[i*3+1] += three.spd[i] * dt * rush;
+      if(pa.array[i*3+1] > 7.4){
+        const a = Math.random()*Math.PI*2, r = 1.6 + Math.random()*4.2;
+        pa.array[i*3] = Math.cos(a)*r;
+        pa.array[i*3+1] = -0.4;
+        pa.array[i*3+2] = Math.sin(a)*r;
+      }
+    }
+    pa.needsUpdate = true;
+    three.points.rotation.y += dt*0.035;
+    three.pmat.opacity = 0.34 + (pourT > 0 ? 0.3 : 0) + Math.sin(clock*0.8)*0.05;
+
     const hot = p && !p.cold;
     three.steam.forEach((sp,i)=>{
       const u = sp.userData;
-      if(!hot){ sp.material.opacity += (0 - sp.material.opacity)*Math.min(1,dt*3); return; }
+      if(!hot){ sp.material.opacity += (0 - sp.material.opacity)*Math.min(1,dt*4); return; }
       u.phase += dt*0.26;
       if(u.phase > 1){ u.phase -= 1; u.x = (Math.random()-.5)*0.5; }
       const t = u.phase;
       const baseY = (p.level || 3.2) + 0.25;
-      sp.position.set(three.group.position.x + u.x + Math.sin(clock*u.sway + i)*0.22*t,
-                      baseY + t*2.6,
-                      0.1);
+      sp.position.set(three.group.position.x + u.x + Math.sin(clock*u.sway + i)*0.22*t, baseY + t*2.6, 0.1);
       const s = 0.7 + t*1.9;
       sp.scale.set(s, s*1.15, 1);
-      sp.material.opacity = Math.sin(t*Math.PI) * 0.4;
+      sp.material.opacity = Math.sin(t*Math.PI) * 0.3;
     });
 
     three.renderer.render(three.scene, three.camera);
@@ -1186,13 +1312,12 @@
   canvas.addEventListener("pointerdown", e=>{
     dragging = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId);
     const hint = $("#spinhint");
-    if(hint && !hint.hidden){ hint.style.transition = "opacity .4s"; hint.style.opacity = "0"; setTimeout(()=>{hint.hidden = true;}, 420); }
+    if(hint && !hint.hidden){ hint.style.opacity = "0"; setTimeout(()=>{hint.hidden = true;}, 420); }
   });
   canvas.addEventListener("pointermove", e=>{
     const r = canvas.getBoundingClientRect();
     if(!dragging){
-      three && (three.par.x = ((e.clientX - r.left)/r.width - .5) * 0.9);
-      three && (three.par.y = ((e.clientY - r.top)/r.height - .5) * -0.7);
+      if(three){ three.par.x = ((e.clientX-r.left)/r.width - .5) * 1.1; three.par.y = ((e.clientY-r.top)/r.height - .5) * -0.8; }
       return;
     }
     const dx = e.clientX - lastX; lastX = e.clientX;
@@ -1204,19 +1329,19 @@
   canvas.addEventListener("pointercancel", stopDrag);
   window.addEventListener("resize", fit);
 
-  /* ================= фильтр цены ================= */
+  /* ================= бюджет ================= */
   const PRESETS = [[150,400],[400,700],[700,1000],[1000,1300]];
   const price = {min:300, max:700};
   const pmin = $("#pmin"), pmax = $("#pmax"), fill = $("#fill");
   function paintRange(){
     const lo = +pmin.min, hi = +pmin.max;
     const a = (price.min-lo)/(hi-lo), b = (price.max-lo)/(hi-lo);
-    fill.style.left = "calc(" + (a*100) + "% - 11px)";
+    fill.style.left = "calc(" + (a*100) + "% - 12px)";
     fill.style.width = ((b-a)*100) + "%";
-    $("#ppval").textContent = money(price.min) + " – " + money(price.max);
-    $("#pillval").textContent = price.min + "–" + price.max + " ₽";
-    document.querySelectorAll(".preset").forEach((el2,i)=>{
-      el2.setAttribute("aria-pressed", String(PRESETS[i][0] === price.min && PRESETS[i][1] === price.max));
+    $("#bpval").textContent = money(price.min) + " – " + money(price.max);
+    $("#budgetval").textContent = price.min + "–" + price.max + " ₽";
+    document.querySelectorAll(".preset").forEach((e2,i)=>{
+      e2.setAttribute("aria-pressed", String(PRESETS[i][0] === price.min && PRESETS[i][1] === price.max));
     });
   }
   function onRange(){
@@ -1239,19 +1364,19 @@
     });
     $("#presets").appendChild(btn);
   });
-  $("#pricepill").addEventListener("click", ()=>{
-    const panel = $("#pricepanel"), open = panel.hidden;
+  $("#budgetbtn").addEventListener("click", ()=>{
+    const panel = $("#budgetpanel"), open = panel.hidden;
     panel.hidden = !open;
-    $("#pricepill").setAttribute("aria-expanded", String(open));
+    $("#budgetbtn").setAttribute("aria-expanded", String(open));
     if(open) requestAnimationFrame(paintRange);
   });
 
   /* ================= интерфейс ================= */
-  const SUGG = ["Барселона","Дюна","Тайга","Новый год","Дедлайн","Сакура","Байкал","Винил","Свидание"];
-  SUGG.forEach(t=>{
+  const SEEDS = ["Барселона","Дюна","Ночная смена","Тайга","Новый год","Дедлайн","Сакура","Воскресное утро","Свидание"];
+  SEEDS.forEach(t=>{
     const b = el("button"); b.type = "button"; b.textContent = t;
     b.addEventListener("click", ()=>{ $("#q").value = t; brew(t); });
-    $("#sugg").appendChild(b);
+    $("#seeds").appendChild(b);
   });
 
   const SERVE_ICON = {
@@ -1262,36 +1387,35 @@
 
   const state = {drink:null, qty:1};
 
-  function renderCaption(d){
-    const box = $("#caption"); box.innerHTML = "";
-    const tags = el("div","tagline");
+  function renderIdentity(d){
+    const box = $("#identity"); box.innerHTML = "";
+    const tags = el("div","tags");
     const mk = (cls,t)=>{ const s = el("span",cls); s.textContent = t; tags.appendChild(s); };
-    mk("tag", d.tag);
+    mk("tag lead", d.tag);
     mk("tag soft", SERVES[d.serve].n.toLowerCase());
-    mk("tag grey", VOLS[d.vol].ml + " мл");
-    if(!d.known) mk("tag grey", "состав согласует бариста");
-    const h = el("h1","cname"); h.textContent = d.title;
-    const p = el("p","cdesc"); p.textContent = d.desc;
+    mk("tag", VOLS[d.vol].ml + " мл");
+    if(!d.known) mk("tag", "черновик");
+    const h = el("h1","name"); h.textContent = d.title;
+    const p = el("p","desc"); p.textContent = d.desc;
     box.append(tags, h, p);
 
     const sl = el("p","serveline");
     const b1 = el("b"); b1.textContent = SERVES[d.serve].n;
-    sl.append(document.createTextNode("Подача: "), b1, document.createTextNode(" — " + SERVES[d.serve].note + ". "));
-    if(d.cold) sl.appendChild(document.createTextNode("На льду рисунок не наносится."));
-    else if(hasArt(d)) sl.appendChild(document.createTextNode("Рисунок на пенке: под тему."));
-    else sl.appendChild(document.createTextNode("Пенка без рисунка."));
+    sl.append(document.createTextNode("Подача — "), b1, document.createTextNode(", " + SERVES[d.serve].note + ". "));
+    sl.appendChild(document.createTextNode(d.cold ? "На льду рисунок не наносится." : (hasArt(d) ? "Рисунок на пенке под тему." : "Пенка без рисунка.")));
     box.appendChild(sl);
   }
 
-  function renderPanel(d){
+  function renderPanels(d){
     const right = $("#right"); right.innerHTML = "";
-    const card = el("section","panelcard");
     const now = priceOf(d), full = fullPrice(d);
 
-    const head = el("div","orderhead");
-    const tot = el("div","total");
-    tot.textContent = money(now * state.qty);
-    if(now < full){ const s = el("s"); s.textContent = money(full * state.qty); tot.appendChild(s); }
+    /* --- заказ --- */
+    const p1 = el("section","panel");
+    const row = el("div","pricerow");
+    const pr = el("div","price");
+    pr.textContent = money(now * state.qty);
+    if(now < full){ const s = el("s"); s.textContent = money(full * state.qty); pr.appendChild(s); }
     const qty = el("div","qty");
     const minus = el("button"); minus.type="button"; minus.textContent="−"; minus.setAttribute("aria-label","Меньше");
     const num = el("span"); num.textContent = state.qty;
@@ -1299,40 +1423,101 @@
     minus.addEventListener("click", ()=>{ state.qty = Math.max(1, state.qty-1); update(); });
     plus.addEventListener("click", ()=>{ state.qty = Math.min(9, state.qty+1); update(); });
     qty.append(minus, num, plus);
-    head.append(tot, qty);
-    card.appendChild(head);
+    row.append(pr, qty);
+    p1.appendChild(row);
 
-    const buy = el("button","buy");
-    buy.textContent = "Заказать в «Гуще»";
-    buy.addEventListener("click", ()=>{
-      buy.classList.add("done"); buy.textContent = "Отправлено бариста ✓";
+    const order = el("button","order");
+    order.textContent = "Отправить бариста";
+    order.addEventListener("click", ()=>{
+      order.classList.add("done"); order.textContent = "Принято ✓";
       toast("Рецепт ушёл в «Гущу» · готово через 6 минут");
-      setTimeout(()=>{ buy.classList.remove("done"); buy.textContent = "Заказать в «Гуще»"; }, 2600);
+      setTimeout(()=>{ order.classList.remove("done"); order.textContent = "Отправить бариста"; }, 2600);
     });
-    card.appendChild(buy);
+    p1.appendChild(order);
 
-    const hint = el("p","hintline");
-    if(d.thin){ hint.classList.add("warn"); hint.textContent = "В этот бюджет помещается только основа. Подними верхнюю границу — добавим вкусы и рисунок."; }
+    const hint = el("p","hint");
+    if(d.thin){ hint.classList.add("warn"); hint.textContent = "В этот бюджет помещается только основа — подними верхнюю границу."; }
     else if(d.rich){ hint.classList.add("warn"); hint.textContent = "До нижней границы не дотянули: под эту тему нет позиций дороже."; }
-    else if(now < price.min){ hint.textContent = "Ты убрал позиций на " + money(full - now) + " — дешевле твоего минимума, это нормально."; }
-    else if(d.off.size){ hint.textContent = "Выключено: " + d.off.size + " · цвет напитка и крепость пересчитаны."; }
-    else { hint.textContent = "Собрано под фильтр " + money(price.min) + " – " + money(price.max) + "."; }
-    card.appendChild(hint);
+    else if(now < price.min){ hint.textContent = "Убрано на " + money(full - now) + " — дешевле твоего минимума."; }
+    else if(d.off.size){ hint.textContent = "Выключено: " + d.off.size + " · цвет и крепость пересчитаны."; }
+    else { hint.textContent = "Собрано под фильтр " + money(price.min) + " – " + money(price.max); }
+    p1.appendChild(hint);
+    right.appendChild(p1);
 
-    // подача
-    const sh1 = el("div","sechead");
-    const t1 = el("h2"); t1.textContent = "Подача";
-    const t1s = el("span"); t1s.textContent = "меняет посуду и температуру";
-    sh1.append(t1,t1s); card.appendChild(sh1);
+    /* --- вкусовая дуга --- */
+    const p2 = el("section","panel");
+    const lab = el("div","plabel");
+    lab.innerHTML = "<span>вкусовая дуга</span>";
+    const labB = el("b"); labB.textContent = "коснись, чтобы убрать";
+    lab.appendChild(labB);
+    p2.appendChild(lab);
 
-    const serves = el("div","serves");
+    const wrap = el("div","arcwrap");
+    const arc = el("div","arc");
+
+    const baseNode = el("div","node root");
+    baseNode.dataset.on = "true";
+    const baseOrb = el("div","orb");
+    baseOrb.textContent = d.cold ? "\u{1F9CA}" : "☕";
+    baseOrb.style.setProperty("--dot", "rgba(255,255,255,.5)");
+    const baseLab = el("div","nlabel"); baseLab.textContent = "Основа";
+    const basePrice = el("div","nprice"); basePrice.textContent = d.cold ? "колд брю" : "эспрессо";
+    baseNode.append(baseOrb, baseLab, basePrice);
+    arc.appendChild(baseNode);
+
+    d.extras.forEach(i=>{
+      const av = usable(d,i);
+      const on = av && !d.off.has(i.id);
+      const node = el("div","node");
+      node.dataset.on = String(on);
+      if(!av) node.dataset.off = "true";
+      const orb = el("div","orb");
+      orb.textContent = i.e;
+      if(i.hex) orb.style.setProperty("--dot", lift(punch(i.hex)));
+      else orb.style.setProperty("--dot", "var(--accent)");
+      const lb = el("div","nlabel"); lb.textContent = i.n;
+      const pc = el("div","nprice"); pc.textContent = av ? "+" + i.price : "нет на льду";
+      node.append(orb, lb, pc);
+      if(av){
+        node.setAttribute("role","button");
+        node.tabIndex = 0;
+        node.setAttribute("aria-pressed", String(on));
+        const toggle = ()=>{
+          if(d.off.has(i.id)) d.off.delete(i.id); else d.off.add(i.id);
+          update();
+        };
+        node.addEventListener("click", toggle);
+        node.addEventListener("keydown", e=>{ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); } });
+      }
+      arc.appendChild(node);
+    });
+    wrap.appendChild(arc);
+    p2.appendChild(wrap);
+
+    const foot = el("p","arcfoot");
+    const offc = d.extras.filter(i=>usable(d,i) && d.off.has(i.id)).length;
+    foot.textContent = offc
+      ? "Выключено " + offc + " из " + d.extras.filter(i=>usable(d,i)).length + ". Цвет напитка пересобран из того, что осталось."
+      : "Слева направо: чем начинается вкус, что в середине, чем заканчивается.";
+    p2.appendChild(foot);
+    right.appendChild(p2);
+
+    /* --- подача и объём --- */
+    const p3 = el("section","panel");
+    const lab3 = el("div","plabel");
+    lab3.innerHTML = "<span>подача</span>";
+    const lab3b = el("b"); lab3b.textContent = "посуда и температура";
+    lab3.appendChild(lab3b);
+    p3.appendChild(lab3);
+
+    const seg = el("div","seg");
     SERVE_ORDER.forEach(id=>{
       const s = SERVES[id];
-      const b = el("button","serve"); b.type = "button";
+      const b = el("button"); b.type = "button";
       b.setAttribute("aria-pressed", String(id === d.serve));
-      b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + SERVE_ICON[id] + '</svg>';
+      b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + SERVE_ICON[id] + '</svg>';
       const nb = el("b"); nb.textContent = s.n;
-      const ns = el("span"); ns.textContent = s.price ? "+" + s.price + " ₽" : "без доплаты";
+      const ns = el("span"); ns.textContent = s.price ? "+" + s.price : "0 ₽";
       b.append(nb, ns);
       b.addEventListener("click", ()=>{
         if(id === d.serve) return;
@@ -1340,108 +1525,87 @@
         if(three){ buildVessel(d); startPour(); }
         update();
       });
-      serves.appendChild(b);
+      seg.appendChild(b);
     });
-    card.appendChild(serves);
+    p3.appendChild(seg);
 
-    // объём
-    const sh2 = el("div","sechead");
-    const t2 = el("h2"); t2.textContent = "Объём";
-    const t2s = el("span"); t2s.textContent = "влияет на цену и кофеин";
-    sh2.append(t2,t2s); card.appendChild(sh2);
-    const vols = el("div","vols");
+    const lab4 = el("div","plabel"); lab4.style.margin = "18px 0 10px";
+    lab4.innerHTML = "<span>объём</span>";
+    const lab4b = el("b"); lab4b.textContent = "цена и кофеин";
+    lab4.appendChild(lab4b);
+    p3.appendChild(lab4);
+
+    const segv = el("div","seg vol");
     VOLS.forEach((v,i)=>{
-      const b = el("button","vol"); b.type="button"; b.textContent = v.ml + " мл";
+      const b = el("button"); b.type="button";
       b.setAttribute("aria-pressed", String(i === d.vol));
+      const nb = el("b"); nb.textContent = v.ml + " мл";
+      const ns = el("span"); ns.textContent = v.price + " ₽";
+      b.append(nb, ns);
       b.addEventListener("click", ()=>{ d.vol = i; update(); });
-      vols.appendChild(b);
+      segv.appendChild(b);
     });
-    card.appendChild(vols);
+    p3.appendChild(segv);
+    right.appendChild(p3);
 
-    // состав
-    const sh3 = el("div","sechead");
-    const t3 = el("h2"); t3.textContent = "Состав";
-    const t3s = el("span"); t3s.textContent = "выключи, что не нравится";
-    sh3.append(t3,t3s); card.appendChild(sh3);
-
-    const list = el("div","ings");
-    allIngs(d).forEach(i=>{
-      const av = usable(d,i);
-      const on = av && !d.off.has(i.id);
-      const row = el("div","ingrow");
-      row.dataset.on = String(on);
-      if(!av) row.dataset.off = "true";
-      const e = el("span","e"); e.textContent = i.e;
-      const txt = el("div","txt");
-      const b = el("b"); b.textContent = i.n;
-      const s = el("span"); s.textContent = av ? i.note : "на льду не наносится";
-      txt.append(b,s);
-      const p = el("span","p");
-      if(i.base){ p.classList.add("free"); p.textContent = "основа"; }
-      else p.textContent = "+" + money(i.price);
-      row.append(e, txt, p);
-      if(!i.base){
-        const sw = el("button","sw"); sw.type = "button";
-        sw.setAttribute("aria-pressed", String(on));
-        if(!av){ sw.disabled = true; sw.setAttribute("aria-label", i.n + " недоступен на льду"); }
-        else{
-          sw.setAttribute("aria-label", (on ? "Убрать" : "Вернуть") + " — " + i.n);
-          sw.addEventListener("click", ()=>{
-            if(d.off.has(i.id)) d.off.delete(i.id); else d.off.add(i.id);
-            update();
-          });
-        }
-        row.appendChild(sw);
-      }
-      list.appendChild(row);
-    });
-    card.appendChild(list);
-
+    /* --- метрики --- */
     const st = statsOf(d);
-    const stats = el("div","stats");
-    [[VOLS[d.vol].ml + " мл","объём"],[st.caff + " мг","кофеин"],["★".repeat(st.sweet) || "—","сладость"],[String(st.kcal),"ккал"]]
-      .forEach(pair=>{
-        const box = el("div","stat");
-        const b = el("b"); b.textContent = pair[0];
-        const s = el("span"); s.textContent = pair[1];
-        box.append(b,s); stats.appendChild(box);
-      });
-    card.appendChild(stats);
+    const p4 = el("section","panel");
+    const lab5 = el("div","plabel");
+    lab5.innerHTML = "<span>что в стакане</span>";
+    const lab5b = el("b"); lab5b.textContent = VOLS[d.vol].ml + " мл";
+    lab5.appendChild(lab5b);
+    p4.appendChild(lab5);
 
-    right.appendChild(card);
+    const meters = el("div","meters");
+    [["m1","крепость", st.caff + " мг", Math.min(1, st.caff/260)],
+     ["m2","сладость", (st.sweet || 0) + " / 5", st.sweet/5],
+     ["m3","плотность", st.kcal + " ккал", Math.min(1, st.kcal/420)]
+    ].forEach(row=>{
+      const m = el("div","meter " + row[0]);
+      const k = el("span","mk"); k.textContent = row[1];
+      const v = el("span","mv"); v.textContent = row[2];
+      const tr = el("div","track");
+      const fl = el("div","fill"); fl.style.width = Math.round(row[3]*100) + "%";
+      tr.appendChild(fl);
+      m.append(k,v,tr);
+      meters.appendChild(m);
+    });
+    p4.appendChild(meters);
+    right.appendChild(p4);
   }
 
   function update(){
     const d = state.drink;
     if(!d) return;
-    renderCaption(d);
-    renderPanel(d);
+    renderIdentity(d);
+    renderPanels(d);
     recolor(d);
   }
 
-  const STEPS = ["Разбираю пожелание", "Подбираю вкус и подачу", "Держу цену в фильтре"];
+  const STEPS = ["разбираю пожелание", "подбираю вкус и подачу", "держу цену в фильтре"];
   let busy = false;
   function brew(text){
     if(busy) return;
-    const q = (text||"").trim() || SUGG[Math.floor(Math.random()*SUGG.length)];
+    const q = (text||"").trim() || SEEDS[Math.floor(Math.random()*SEEDS.length)];
     $("#q").value = q;
     if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
     busy = true;
-    $("#go").disabled = true;
-    $("#brewbadge").classList.add("on");
-    $("#pricepanel").hidden = true;
-    $("#pricepill").setAttribute("aria-expanded","false");
+    $("#send").disabled = true;
+    $("#hud").classList.add("on");
+    $("#budgetpanel").hidden = true;
+    $("#budgetbtn").setAttribute("aria-expanded","false");
 
     const d = generate(q, price.min, price.max);
     let i = 0;
-    $("#brewtext").textContent = STEPS[0];
+    $("#hudtext").textContent = STEPS[0];
     const t = setInterval(()=>{
       i++;
-      if(i < STEPS.length){ $("#brewtext").textContent = STEPS[i]; return; }
+      if(i < STEPS.length){ $("#hudtext").textContent = STEPS[i]; return; }
       clearInterval(t);
       busy = false;
-      $("#go").disabled = false;
-      $("#brewbadge").classList.remove("on");
+      $("#send").disabled = false;
+      $("#hud").classList.remove("on");
       state.drink = d; state.qty = 1;
       if(three){ buildVessel(d); entering = 1; startPour(); }
       update();
