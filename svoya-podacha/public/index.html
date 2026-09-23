@@ -223,14 +223,24 @@
   .card{position:fixed;inset:0;z-index:70;overflow:hidden;background:var(--void);
         animation:cardin .55s cubic-bezier(.2,.9,.3,1) both}
   @keyframes cardin{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:none}}
+  /* Среда карточки — наша: пустота, световое пятно цвета напитка, зерно.
+     Объём даёт настоящий 3D-стакан, а не картинка. */
+  .cardlight{position:absolute;inset:0;pointer-events:none;
+             background:radial-gradient(76% 52% at 50% 46%, color-mix(in srgb, var(--drink) 46%, transparent), transparent 70%),
+                        radial-gradient(120% 80% at 50% 120%, rgba(77,124,255,.22), transparent 62%)}
+  .stage{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
   .cardphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
-             transform:scale(1.06);transition:opacity .9s ease,transform 5s ease}
+             transform:scale(1.05);transition:opacity .8s ease,transform 5s ease}
   .cardphoto.on{opacity:1;transform:scale(1)}
-  .cardnophoto{position:absolute;left:0;right:0;top:46%;padding:0 42px;text-align:center;
-               font-size:13px;line-height:1.55;color:var(--txt-3)}
   .cardshade{position:absolute;inset:0;pointer-events:none;background:
-    linear-gradient(to bottom, rgba(6,6,11,.88) 0%, rgba(6,6,11,.42) 24%, rgba(6,6,11,.02) 42%,
-                               rgba(6,6,11,.28) 62%, rgba(6,6,11,.94) 84%, rgba(6,6,11,.98) 100%)}
+    linear-gradient(to bottom, rgba(6,6,11,.9) 0%, rgba(6,6,11,.42) 22%, rgba(6,6,11,0) 40%,
+                               rgba(6,6,11,.22) 62%, rgba(6,6,11,.92) 84%, rgba(6,6,11,.98) 100%)}
+  .look{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+        display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;
+        border:1px solid var(--edge);background:rgba(255,255,255,.05);
+        backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+        font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;
+        text-transform:uppercase;color:var(--txt-2);white-space:nowrap}
   .cardin{position:relative;height:100%;display:flex;flex-direction:column;max-width:560px;margin:0 auto;
           padding:calc(12px + env(safe-area-inset-top,0px)) 14px calc(12px + env(safe-area-inset-bottom,0px))}
   .cardhead{display:flex;align-items:flex-start;gap:10px}
@@ -242,13 +252,17 @@
   .round.on{background:#fff;color:#06060B}
   .cardtitle{flex:1;min-width:0;padding-top:3px;text-align:center}
   .cardtitle h1{margin:0;font-size:clamp(19px,5.2vw,23px);line-height:1.16;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
-  .cardtitle p{margin:5px 0 0;font-size:12px;color:var(--txt-2);font-weight:300}
+  .cardtitle p{margin:6px 0 0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+               letter-spacing:.04em;color:var(--accent);font-weight:400}
 
   .nutri{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:18px;text-align:center}
   .nutri b{display:block;font-size:16.5px;font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums}
-  .nutri span{display:block;margin-top:3px;font-size:11px;color:var(--txt-3);font-weight:300}
-  .composebtn{margin:16px auto 0;display:flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;
-              background:rgba(255,255,255,.14);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font-size:13.5px}
+  .nutri span{display:block;margin-top:4px;font-family:"JetBrains Mono",monospace;font-size:9px;
+              letter-spacing:.16em;text-transform:uppercase;color:var(--txt-3)}
+  .composebtn{margin:16px auto 0;display:flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;
+              border:1px solid var(--edge);background:rgba(255,255,255,.055);
+              backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+              font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
   .composebtn svg{width:12px;height:12px;color:var(--txt-2);transition:transform .3s}
   .composebtn[aria-expanded="true"] svg{transform:rotate(180deg)}
 
@@ -270,7 +284,7 @@
               color:var(--txt-3);margin:0 0 10px}
   .sheet .note{margin:16px 0 0;font-size:11.5px;line-height:1.5;color:var(--txt-3)}
 
-  .spacer{flex:1;min-height:0}
+  .spacer{position:relative;flex:1;min-height:0}
 
   .addons{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding:2px 0 2px;margin:0 -14px;padding-left:14px;padding-right:14px}
   .addons::-webkit-scrollbar{display:none}
@@ -298,9 +312,9 @@
           background:rgba(255,255,255,.12);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
           transition:transform .18s cubic-bezier(.3,1.4,.5,1)}
   .volbtn:active{transform:scale(.95)}
-  .buy{flex:1;min-width:0;padding:15px 18px;border-radius:999px;background:#3A5BFF;color:#fff;
+  .buy{flex:1;min-width:0;padding:15px 18px;border-radius:999px;background:#fff;color:#06060B;
        font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;
-       box-shadow:0 12px 34px rgba(58,91,255,.36);font-variant-numeric:tabular-nums;
+       box-shadow:0 14px 38px rgba(0,0,0,.45);font-variant-numeric:tabular-nums;
        transition:transform .18s cubic-bezier(.3,1.4,.5,1),background .3s,box-shadow .3s}
   .buy:active{transform:scale(.98)}
   .buy.done{background:var(--ok);color:#03150E;box-shadow:0 12px 34px rgba(59,224,160,.3)}
@@ -393,8 +407,9 @@
 </div>
 
 <div class="card" id="card" hidden>
-  <img class="cardphoto" id="cardphoto" alt="">
-  <div class="cardnophoto" id="cardnophoto" hidden></div>
+  <div class="cardlight" id="cardlight"></div>
+  <canvas class="stage" id="stage"></canvas>
+  <img class="cardphoto" id="cardphoto" alt="" hidden>
   <div class="cardshade"></div>
   <div class="cardin">
     <div class="cardhead">
@@ -419,7 +434,9 @@
     </button>
 
     <div class="sheet" id="sheet" hidden></div>
-    <div class="spacer" id="spacer"></div>
+    <div class="spacer" id="spacer">
+      <button class="look" id="look" type="button" hidden></button>
+    </div>
 
     <div class="addons" id="addons"></div>
     <p class="overline" id="overline"></p>
@@ -432,6 +449,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="vendor/three.min.js"></script>
 <script>
 (function(){
   "use strict";
@@ -506,6 +524,324 @@
   }
   function stopSteps(){ clearInterval(stepTimer); stepTimer = null; }
 
+  /* ---------- стакан: настоящий 3D ---------- */
+  /* Объём даёт сцена, а не картинка: рифлёное стекло, слои напитка по
+     составу, пенка с рисунком или лёд, мягкий контактный теневой круг.
+     Работает без ключей и без сети — фото от генератора ложится поверх. */
+  const Cup = (function(){
+    const canvas = $("#stage");
+    let renderer, scene, camera, lights, env, group, junk = [], raf = 0, running = false, t0 = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* --- цвет --- */
+    const hex = h => {
+      const v = String(h || "#B98553").replace("#","");
+      const n = parseInt(v.length === 3 ? v.split("").map(c=>c+c).join("") : v, 16);
+      return [(n>>16)&255, (n>>8)&255, n&255];
+    };
+    const css = ([r,g,b]) => "rgb(" + [r,g,b].map(x=>Math.max(0,Math.min(255,Math.round(x)))).join(",") + ")";
+    const mix = (a, b, k) => { const x = hex(a), y = hex(b); return css(x.map((v,i)=> v + (y[i]-v)*k)); };
+
+    /* --- геометрия рифлёного стекла --- */
+    function fluted(rTop, rBot, h, ribs, depth, open){
+      const g = new THREE.CylinderGeometry(rTop, rBot, h, 160, 1, open !== false);
+      const p = g.attributes.position;
+      for(let i = 0; i < p.count; i++){
+        const x = p.getX(i), z = p.getZ(i);
+        const a = Math.atan2(z, x), r = Math.sqrt(x*x + z*z);
+        const k = 1 + depth * Math.cos(a * ribs);
+        p.setX(i, Math.cos(a) * r * k);
+        p.setZ(i, Math.sin(a) * r * k);
+      }
+      g.computeVertexNormals();
+      return g;
+    }
+
+    /* --- окружение: два софтбокса, чтобы по стеклу шли длинные блики --- */
+    function envMap(){
+      const c = document.createElement("canvas"); c.width = 512; c.height = 256;
+      const g = c.getContext("2d");
+      const grad = g.createLinearGradient(0, 0, 0, 256);
+      grad.addColorStop(0, "#2b3145"); grad.addColorStop(.45, "#0a0b12");
+      grad.addColorStop(.62, "#161a27"); grad.addColorStop(1, "#04040a");
+      g.fillStyle = grad; g.fillRect(0, 0, 512, 256);
+      g.filter = "blur(16px)";
+      g.fillStyle = "rgba(255,255,255,.9)";  g.fillRect(44, 18, 108, 150);
+      g.fillStyle = "rgba(176,202,255,.55)"; g.fillRect(338, 26, 84, 138);
+      g.filter = "none";
+      const t = new THREE.CanvasTexture(c);
+      t.mapping = THREE.EquirectangularReflectionMapping;
+      t.encoding = THREE.sRGBEncoding;
+      return t;
+    }
+
+    /* --- вертикальный градиент напитка из цветов состава --- */
+    function liquidMap(colors, foam){
+      const c = document.createElement("canvas"); c.width = 4; c.height = 256;
+      const g = c.getContext("2d");
+      const list = (colors.length ? colors : ["#4A2A18"]).slice(0, 4);
+      const grad = g.createLinearGradient(0, 256, 0, 0);
+      grad.addColorStop(0, mix(list[0], "#130A05", .58));
+      list.forEach((col, i) => {
+        const at = .16 + .62 * (list.length === 1 ? .5 : i / (list.length - 1));
+        grad.addColorStop(at, col);
+      });
+      grad.addColorStop(1, mix(list[list.length-1], foam, .5));
+      g.fillStyle = grad; g.fillRect(0, 0, 4, 256);
+      const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
+      return t;
+    }
+
+    /* --- поверхность: рисунок на пенке или корица по кремА --- */
+    function surfaceMap(crema, foam, art, seed){
+      const S = 512, c = document.createElement("canvas"); c.width = c.height = S;
+      const g = c.getContext("2d");
+      const R = S/2;
+      g.fillStyle = crema; g.beginPath(); g.arc(R, R, R, 0, 7); g.fill();
+
+      let x = (seed >>> 0) || 7;
+      const rnd = ()=>{ x = (Math.imul(x, 1664525) + 1013904223) >>> 0; return x / 4294967296; };
+
+      if(art){
+        g.strokeStyle = foam; g.fillStyle = foam;
+        g.lineCap = "round";
+        for(let i = 0; i < 9; i++){
+          const t = i / 8, y = R - 150 + t * 300, w = 138 * (1 - t*.62);
+          g.beginPath();
+          g.ellipse(R, y, w, 30 + 14*(1-t), 0, 0, Math.PI*2);
+          g.globalAlpha = .9 - t*.25; g.fill();
+        }
+        g.globalAlpha = 1;
+        g.fillStyle = crema;
+        for(let i = 0; i < 8; i++){
+          const t = i/7, y = R - 140 + t * 288, w = 118 * (1 - t*.6);
+          g.beginPath(); g.ellipse(R, y + 22, w*.82, 16 + 8*(1-t), 0, 0, Math.PI*2);
+          g.globalAlpha = .55; g.fill();
+        }
+        g.globalAlpha = 1;
+        g.strokeStyle = foam; g.lineWidth = 9;
+        g.beginPath(); g.moveTo(R, R - 168); g.lineTo(R, R + 172); g.stroke();
+      }else if(seed){
+        for(let i = 0; i < 90; i++){
+          const a = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * (R - 26);
+          g.globalAlpha = .18 + rnd() * .5;
+          g.fillStyle = mix(crema, "#2A160C", .55);
+          g.beginPath(); g.arc(R + Math.cos(a)*r, R + Math.sin(a)*r, 1.4 + rnd()*3.2, 0, 7); g.fill();
+        }
+        g.globalAlpha = 1;
+      }
+
+      const vign = g.createRadialGradient(R, R, R*.44, R, R, R);
+      vign.addColorStop(0, "rgba(0,0,0,0)"); vign.addColorStop(1, "rgba(0,0,0,.34)");
+      g.fillStyle = vign; g.fillRect(0, 0, S, S);
+
+      const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
+      return t;
+    }
+
+    function contactShadow(){
+      const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
+      const g = c.getContext("2d");
+      const rg = g.createRadialGradient(S/2, S/2, 0, S/2, S/2, S/2);
+      rg.addColorStop(0, "rgba(0,0,0,.72)"); rg.addColorStop(.55, "rgba(0,0,0,.3)");
+      rg.addColorStop(1, "rgba(0,0,0,0)");
+      g.fillStyle = rg; g.fillRect(0, 0, S, S);
+      return new THREE.CanvasTexture(c);
+    }
+
+    function steamMap(){
+      const S = 128, c = document.createElement("canvas"); c.width = c.height = S;
+      const g = c.getContext("2d");
+      const rg = g.createRadialGradient(S/2, S/2, 0, S/2, S/2, S/2);
+      rg.addColorStop(0, "rgba(255,255,255,.5)"); rg.addColorStop(1, "rgba(255,255,255,0)");
+      g.fillStyle = rg; g.fillRect(0, 0, S, S);
+      return new THREE.CanvasTexture(c);
+    }
+
+    function init(){
+      if(renderer) return;
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.08;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(32, 1, .1, 60);
+      camera.position.set(0, 1.02, 5.3);
+      camera.lookAt(0, -.04, 0);
+      env = envMap();
+
+      const hemi = new THREE.HemisphereLight(0x9fb4ff, 0x130b08, .6);
+      const key = new THREE.DirectionalLight(0xfff1df, 2.3);
+      key.position.set(2.7, 4.4, 2.6);
+      key.castShadow = true;
+      key.shadow.mapSize.set(1024, 1024);
+      key.shadow.camera.near = .5; key.shadow.camera.far = 14;
+      key.shadow.camera.left = -3; key.shadow.camera.right = 3;
+      key.shadow.camera.top = 3; key.shadow.camera.bottom = -3;
+      key.shadow.radius = 4; key.shadow.bias = -0.0012;
+      const rim = new THREE.DirectionalLight(0x86aaff, 1.6);
+      rim.position.set(-3.2, 1.8, -2.6);
+      const tint = new THREE.PointLight(0xB98553, 1.1, 9);
+      tint.position.set(0, .1, 1.9);
+      lights = { hemi, key, rim, tint };
+      scene.add(hemi, key, rim, tint);
+
+      const floor = new THREE.Mesh(new THREE.PlaneGeometry(24, 24), new THREE.ShadowMaterial({ opacity: .5 }));
+      floor.rotation.x = -Math.PI/2; floor.position.y = -1.0; floor.receiveShadow = true;
+      scene.add(floor);
+
+      const blob = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.4, 3.4),
+        new THREE.MeshBasicMaterial({ map: contactShadow(), transparent: true, depthWrite: false })
+      );
+      blob.rotation.x = -Math.PI/2; blob.position.set(.12, -.985, .1);
+      blob.scale.set(1, .62, 1);
+      scene.add(blob);
+
+      new ResizeObserver(size).observe(canvas);
+      size();
+    }
+
+    function size(){
+      if(!renderer) return;
+      const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      // Кадр у телефона высокий и узкий, поэтому стакан вписываем по ширине:
+      // иначе камера режет ему бока.
+      const half = Math.tan((camera.fov * Math.PI / 180) / 2);
+      const byWidth  = (4.05 / 2) / (half * camera.aspect);
+      const byHeight = (4.60 / 2) / half;
+      const dist = Math.max(byWidth, byHeight);
+      camera.position.set(0, dist * .36, dist);
+      camera.lookAt(0, -.18, 0);   // цель ниже — предмет поднимается в кадре
+      camera.updateProjectionMatrix();
+    }
+
+    function clear(){
+      if(group) scene.remove(group);
+      junk.forEach(o => o && o.dispose && o.dispose());
+      junk = []; group = null;
+    }
+    const keep = o => { junk.push(o); return o; };
+
+    function build(d, chosen){
+      init();
+      clear();
+      group = new THREE.Group();
+
+      const ing = (d.ingredients || []).concat(d.extras || []).filter(i => chosen.includes(i.id));
+      const colors = ing.map(i => i.color).filter(Boolean);
+      const cold = !!d.cold;
+      const art = !cold && chosen.includes("latteart");
+      const foam = cold ? "#E8F0F4" : "#EFDCBE";
+      // Цвет ингредиента — это оттенок в кофе, а не заливка: иначе стакан
+      // светится неоном и перестаёт быть напитком.
+      const inCoffee = colors.map(c => mix("#3C2115", c, .34));
+      const crema = colors.length ? mix("#8A5A32", colors[0], .16) : "#9A6B41";
+      const seed = (d.name || "").split("").reduce((a,c)=> (a*33 + c.charCodeAt(0)) >>> 0, 5381);
+
+      const glass = keep(new THREE.MeshPhysicalMaterial({
+        color: 0xffffff, metalness: 0, roughness: .06, transparent: true, opacity: .09,
+        side: THREE.DoubleSide, clearcoat: 1, clearcoatRoughness: .04,
+        envMap: env, envMapIntensity: 1.25, depthWrite: false
+      }));
+
+      const body = new THREE.Mesh(keep(fluted(.79, .72, 1.95, 22, .034)), glass);
+      body.castShadow = true;
+      group.add(body);
+
+      const bottom = new THREE.Mesh(keep(new THREE.CircleGeometry(.72, 64)), glass);
+      bottom.rotation.x = -Math.PI/2; bottom.position.y = -.973;
+      group.add(bottom);
+
+      const liqTop = .78, liqH = 1.72;
+      const liquid = new THREE.Mesh(
+        keep(fluted(.745, .685, liqH, 22, .032)),
+        keep(new THREE.MeshStandardMaterial({
+          map: keep(liquidMap(inCoffee, foam)), roughness: .58, metalness: 0,
+          envMap: env, envMapIntensity: .18
+        }))
+      );
+      liquid.position.y = liqTop - liqH/2;
+      liquid.castShadow = true;
+      group.add(liquid);
+
+      const surface = new THREE.Mesh(
+        keep(new THREE.CircleGeometry(.742, 96)),
+        keep(new THREE.MeshStandardMaterial({
+          map: keep(surfaceMap(cold ? mix(inCoffee[0] || "#2E4A42", "#0B1512", .3) : crema, foam, art, cold ? 0 : seed)),
+          roughness: .88, metalness: 0, envMap: env, envMapIntensity: .05,
+          side: THREE.DoubleSide   // без этого диск исчезает: он повёрнут от камеры
+        }))
+      );
+      surface.rotation.x = -Math.PI/2;
+      surface.position.y = liqTop + .002;
+      group.add(surface);
+
+      if(cold){
+        const ice = keep(new THREE.MeshPhysicalMaterial({
+          color: 0xdcecf7, metalness: 0, roughness: .12, transparent: true, opacity: .46,
+          envMap: env, envMapIntensity: 1.4, flatShading: true
+        }));
+        let x = (seed || 9) >>> 0;
+        const rnd = ()=>{ x = (Math.imul(x, 1664525) + 1013904223) >>> 0; return x / 4294967296; };
+        for(let i = 0; i < 7; i++){
+          const cube = new THREE.Mesh(keep(new THREE.IcosahedronGeometry(.17 + rnd()*.08, 0)), ice);
+          const a = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * .44;
+          // лёд торчит из напитка, иначе его просто не видно
+          cube.position.set(Math.cos(a)*r, liqTop + .04 - rnd()*.22, Math.sin(a)*r);
+          cube.rotation.set(rnd()*3, rnd()*3, rnd()*3);
+          cube.castShadow = true;
+          group.add(cube);
+        }
+      }else{
+        const smap = keep(steamMap());
+        for(let i = 0; i < 3; i++){
+          const sp = new THREE.Sprite(keep(new THREE.SpriteMaterial({
+            map: smap, transparent: true, opacity: 0, depthWrite: false
+          })));
+          sp.scale.set(.9, 1.3, 1);
+          sp.userData.phase = i / 3;
+          sp.position.set((i - 1) * .18, liqTop + .4, 0);
+          group.add(sp);
+        }
+      }
+
+      lights.tint.color.set(inCoffee[0] || "#B98553");
+      lights.tint.intensity = .34;
+      scene.add(group);
+      t0 = performance.now();
+      draw(t0);
+      start();
+    }
+
+    function draw(now){
+      if(!renderer || !group) return;
+      const t = (now - t0) / 1000;
+      group.rotation.y = reduced ? .22 : Math.sin(t * .21) * .42;
+      group.position.y = reduced ? 0 : Math.sin(t * .9) * .012;
+      group.children.forEach(o => {
+        if(!o.isSprite) return;
+        const k = (t * .26 + o.userData.phase) % 1;
+        o.position.y = .98 + k * .9;
+        o.position.x += Math.sin(t * 1.4 + o.userData.phase * 6) * .0012;
+        o.material.opacity = Math.sin(k * Math.PI) * .32;
+      });
+      renderer.render(scene, camera);
+    }
+
+    function loop(now){ if(!running) return; draw(now); raf = requestAnimationFrame(loop); }
+    function start(){ if(running || reduced) return; running = true; raf = requestAnimationFrame(loop); }
+    function stop(){ running = false; cancelAnimationFrame(raf); }
+
+    return { build, start, stop, size };
+  })();
+
   /* ---------- карточка напитка ---------- */
   /* Карточка живёт на клиенте: гость трогает состав и объём, цена и БЖУ
      пересчитываются по тем же числам, что прислал сервер. Заказ всё равно
@@ -524,18 +860,16 @@
     $("#cardname").textContent = d.name;
     $("#cardtag").textContent  = d.serveName + " · " + d.tagline;
 
-    const img = $("#cardphoto"), no = $("#cardnophoto");
-    img.classList.remove("on");
+    // 3D показывается всегда, фото от генератора — вторым слоем по кнопке.
+    const img = $("#cardphoto"), look = $("#look");
+    img.classList.remove("on"); img.hidden = true; photo = false;
     if(d.image){
-      no.hidden = true;
       img.alt = d.name;
-      img.onload = ()=> img.classList.add("on");
       img.src = d.image;
+      look.hidden = false; look.textContent = "показать фото";
     }else{
       img.removeAttribute("src");
-      no.hidden = false;
-      no.textContent = "Фото не сгенерировалось: " + (d.imageError || "провайдер не ответил") +
-                       ". Напиток и цена собраны — можно заказывать.";
+      look.hidden = true;
     }
 
     $("#fav").classList.remove("on");
@@ -547,7 +881,19 @@
     buildAddons();
     repaint();
     show("card");
+    Cup.size();
   }
+
+  /* фото поверх сцены — по желанию, 3D остаётся под ним */
+  let photo = false;
+  $("#look").addEventListener("click", ()=>{
+    photo = !photo;
+    const img = $("#cardphoto");
+    img.hidden = false;
+    requestAnimationFrame(()=> img.classList.toggle("on", photo));
+    if(photo) Cup.stop(); else Cup.start();
+    $("#look").textContent = photo ? "показать 3D" : "показать фото";
+  });
 
   const item = id => cur.pool.find(i => i.id === id) || null;
   const chosenItems = () => cur.chosen.map(item).filter(Boolean);
@@ -598,6 +944,9 @@
     $("#overline").textContent = over > 0 ? "Выше бюджета на " + money(over) : "";
 
     if(!$("#sheet").hidden) buildSheet();
+
+    // состав изменился — стакан пересобирается: слои, пенка, лёд
+    Cup.build(cur.d, cur.chosen);
   }
 
   function buildAddons(){
@@ -644,6 +993,12 @@
     note.textContent = "по пожеланию: «" + d.wish + "»" +
       (d.latteArt && cur.chosen.includes("latteart") ? " · на пенке: " + d.latteArt : "");
     box.appendChild(note);
+
+    if(d.imageError){
+      const warn = el("p","note");
+      warn.textContent = "фото не сгенерировалось: " + d.imageError + " — показываем 3D";
+      box.appendChild(warn);
+    }
   }
 
   $("#composebtn").addEventListener("click", ()=>{
@@ -660,6 +1015,7 @@
   });
 
   $("#cardclose").addEventListener("click", ()=>{
+    Cup.stop();
     show("invite");
     $("#q").value = "";
   });
