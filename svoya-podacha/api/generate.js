@@ -1,6 +1,6 @@
 import { composeDrink } from "./_text.js";
 import { generateImage, imageProviderName } from "./_image.js";
-import { byId, priceOf, SERVES, BASE } from "./_catalog.js";
+import { byId, priceOf, SERVES, BASE, VOLUMES, CATALOG } from "./_catalog.js";
 
 /**
  * POST /api/generate
@@ -73,10 +73,23 @@ export default async function handler(req, res) {
       base: (cold ? BASE.cold : BASE.hot).map(b => b.name),
       ingredients: usable.map(id => {
         const i = byId(id);
-        return { id: i.id, name: i.name, price: i.price, note: i.note, color: i.color };
+        return { id: i.id, name: i.name, price: i.price, note: i.note, color: i.color,
+                 kcal: i.kcal, caff: i.caff, sweet: i.sweet, prot: i.prot, fat: i.fat, carb: i.carb };
       }),
       price: price.total,
-      stats: { kcal: price.kcal, caff: price.caff, sweet: price.sweet },
+      priceParts: { base: price.base, serve: price.servePrice },
+      stats: {
+        kcal: price.kcal, caff: price.caff, sweet: price.sweet,
+        prot: price.prot, fat: price.fat, carb: price.carb
+      },
+      // Объёмы и свободные позиции каталога: гость меняет состав прямо в карточке,
+      // а цена и БЖУ пересчитываются по тем же числам, что и на сервере.
+      volumes: VOLUMES,
+      extras: CATALOG
+        .filter(i => !usable.includes(i.id))
+        .filter(i => !(cold && i.id === "latteart"))
+        .map(i => ({ id: i.id, name: i.name, price: i.price, note: i.note, color: i.color,
+                     kcal: i.kcal, caff: i.caff, sweet: i.sweet, prot: i.prot, fat: i.fat, carb: i.carb })),
       budget: { min, max },
       overBudget: price.total > max,
       dropped,
