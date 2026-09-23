@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06060B">
+<title>Своя подача</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    color-scheme:dark;
+    --void:#06060B;
+    --txt:#FFFFFF;
+    --txt-2:rgba(255,255,255,.64);
+    --txt-3:rgba(255,255,255,.38);
+    --glass:rgba(255,255,255,.045);
+    --edge:rgba(255,255,255,.10);
+    --edge-2:rgba(255,255,255,.055);
+    --accent:#6E8BFF;
+    --drink:#C9884F;
+    --ok:#3BE0A0;
+    --warn:#FFB35C;
+    --shadow:0 24px 70px rgba(0,0,0,.55);
+    padding-top:env(safe-area-inset-top, 0px);
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+  }
+  html,body{height:100%}
+  body{
+    margin:0;background:var(--void);color:var(--txt);overflow-x:hidden;
+    font-family:"Onest", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  *{box-sizing:border-box}
+  button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+  input{font:inherit;color:inherit}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+  :focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:3px;border-radius:10px}
+
+  /* ---------- среда ---------- */
+  .env{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--void);pointer-events:none}
+  .aurora{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform}
+  .a1{width:78vmax;height:78vmax;left:-26vmax;top:-32vmax;background:radial-gradient(circle, rgba(77,124,255,.40), transparent 62%);animation:d1 46s infinite alternate ease-in-out}
+  .a2{width:62vmax;height:62vmax;right:-24vmax;top:-12vmax;background:radial-gradient(circle, rgba(154,92,255,.32), transparent 64%);animation:d2 58s infinite alternate ease-in-out}
+  .a3{width:74vmax;height:74vmax;left:-14vmax;bottom:-40vmax;background:radial-gradient(circle, rgba(55,223,232,.18), transparent 66%);animation:d3 52s infinite alternate ease-in-out}
+  @keyframes d1{to{transform:translate3d(10vmax,6vmax,0) scale(1.12)}}
+  @keyframes d2{to{transform:translate3d(-8vmax,8vmax,0) scale(1.08)}}
+  @keyframes d3{to{transform:translate3d(9vmax,-7vmax,0) scale(1.1)}}
+  .grain{position:absolute;inset:-50%;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .vignette{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 35%, transparent 40%, rgba(0,0,0,.72) 100%)}
+
+  /* ---------- каркас ---------- */
+  .shell{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 18px 168px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 0 6px}
+  .mark{flex:0 0 auto;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .mark i{width:22px;height:22px;border-radius:7px;font-style:normal;background:linear-gradient(140deg,#4D7CFF,#9A5CFF);
+          display:grid;place-items:center;font-size:11px;font-weight:700}
+  .meta{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3)}
+
+  /* ---------- сцена ---------- */
+  .scene{position:relative;min-height:clamp(330px,52svh,470px);display:grid;place-items:center;padding:8px 0 4px}
+
+  /* налив */
+  .pour{width:min(230px,58vw);height:auto;display:block}
+  .pour .cup{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2.5;stroke-linejoin:round}
+  .pour .rim{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2.5}
+  .pour .inner{fill:rgba(255,255,255,.04)}
+  .pour .liquid{fill:var(--drink);transform:translateY(190px);animation:fill 4.2s cubic-bezier(.45,0,.35,1) infinite}
+  .pour .foam{fill:rgba(255,255,255,.35);transform:translateY(190px);animation:fill 4.2s cubic-bezier(.45,0,.35,1) infinite}
+  .pour .stream{fill:var(--drink);transform-origin:110px 0;animation:stream 4.2s linear infinite}
+  .pour .drop{fill:var(--drink);opacity:0;animation:drop 4.2s linear infinite}
+  .pour .drop:nth-of-type(2){animation-delay:.5s}
+  @keyframes fill{
+    0%{transform:translateY(190px)} 5%{transform:translateY(190px)}
+    58%{transform:translateY(22px)} 82%{transform:translateY(22px)}
+    100%{transform:translateY(190px)}
+  }
+  @keyframes stream{
+    0%{transform:scaleY(0);opacity:0} 6%{transform:scaleY(1);opacity:.95}
+    58%{transform:scaleY(1);opacity:.95} 64%{transform:scaleY(0);opacity:0} 100%{transform:scaleY(0);opacity:0}
+  }
+  @keyframes drop{
+    0%,60%{opacity:0;transform:translateY(0)}
+    64%{opacity:.9;transform:translateY(0)}
+    76%{opacity:0;transform:translateY(34px)}
+    100%{opacity:0}
+  }
+  .steamline{stroke:rgba(255,255,255,.5);stroke-width:2.5;stroke-linecap:round;fill:none;
+             stroke-dasharray:6 10;opacity:0;animation:steam 3.4s ease-in-out infinite}
+  .steamline:nth-of-type(2){animation-delay:.9s}
+  .steamline:nth-of-type(3){animation-delay:1.8s}
+  @keyframes steam{0%{opacity:0;transform:translateY(6px)}40%{opacity:.5}100%{opacity:0;transform:translateY(-16px)}}
+
+  .status{margin-top:22px;text-align:center}
+  .status .line{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+                text-transform:uppercase;color:var(--txt-2);min-height:16px}
+  .status .sub{margin-top:8px;font-size:12px;color:var(--txt-3)}
+  .progress{width:180px;height:2px;border-radius:2px;background:rgba(255,255,255,.1);margin:14px auto 0;overflow:hidden}
+  .progress i{display:block;height:100%;width:36%;border-radius:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);
+              animation:slide 1.5s linear infinite}
+  @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(380%)}}
+
+  /* фото */
+  .shot{position:relative;width:100%;aspect-ratio:1/1;border-radius:28px;overflow:hidden;
+        border:1px solid var(--edge);background:rgba(255,255,255,.03);box-shadow:var(--shadow)}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .7s ease}
+  .shot img.on{opacity:1}
+  .shot::after{content:"";position:absolute;inset:0;pointer-events:none;
+               background:radial-gradient(120% 80% at 50% 0%, transparent 55%, rgba(0,0,0,.45) 100%)}
+  .shotglow{position:absolute;inset:-14% -6% -22%;z-index:-1;filter:blur(46px);opacity:.5;
+            background:radial-gradient(circle at 50% 55%, var(--drink), transparent 62%)}
+  .nophoto{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:26px;
+           font-size:12.5px;line-height:1.5;color:var(--txt-3)}
+
+  /* ---------- текст ---------- */
+  .idhead{margin-top:22px}
+  .tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+       border:1px solid var(--edge);border-radius:999px;padding:5px 10px;color:var(--txt-2);background:rgba(255,255,255,.03)}
+  .tag.lead{border-color:transparent;background:rgba(255,255,255,.92);color:#06060B;font-weight:500}
+  .tag.soft{border-color:color-mix(in srgb, var(--accent) 45%, transparent);color:var(--accent)}
+  .tag.warn{border-color:color-mix(in srgb, var(--warn) 50%, transparent);color:var(--warn)}
+  h1.name{margin:0 0 10px;font-size:clamp(30px,8vw,44px);line-height:1;font-weight:700;letter-spacing:-.045em;text-wrap:balance}
+  .tagline{margin:0 0 12px;font-size:14px;color:var(--accent);font-family:"JetBrains Mono",monospace;letter-spacing:.02em}
+  .story{margin:0;font-size:15px;line-height:1.6;color:var(--txt-2);font-weight:300}
+  .wishline{margin:14px 0 0;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.08em;color:var(--txt-3)}
+
+  /* ---------- панели ---------- */
+  .panel{margin-top:16px;border-radius:26px;padding:20px;background:var(--glass);border:1px solid var(--edge);
+         backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%);box-shadow:var(--shadow)}
+  .plabel{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px;
+          font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-3)}
+  .plabel b{color:rgba(255,255,255,.3);font-weight:400;font-family:"Onest",sans-serif;font-size:11px;letter-spacing:0;text-transform:none}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{display:flex;align-items:center;gap:8px;border:1px solid var(--edge-2);border-radius:14px;padding:9px 12px;
+        background:rgba(255,255,255,.03);font-size:13px}
+  .chip i{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 10px currentColor}
+  .chip s{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--txt-3);text-decoration:none}
+  .chip.base{opacity:.55}
+
+  .meters{display:flex;flex-direction:column;gap:13px;margin-top:4px}
+  .meter{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+  .meter .mk{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-3)}
+  .meter .mv{font-family:"JetBrains Mono",monospace;font-size:12px;font-variant-numeric:tabular-nums}
+  .meter .track{grid-column:1/-1;height:3px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+  .meter .fl{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.3,1,.4,1)}
+  .m1 .fl{background:linear-gradient(90deg,#4D7CFF,#37DFE8)}
+  .m2 .fl{background:linear-gradient(90deg,#9A5CFF,#FF5CC8)}
+  .m3 .fl{background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.8))}
+
+  .pricerow{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+  .price{font-size:clamp(30px,9vw,40px);font-weight:600;letter-spacing:-.04em;line-height:.95;font-variant-numeric:tabular-nums}
+  .order{width:100%;margin-top:16px;border-radius:16px;padding:16px;background:#fff;color:#06060B;
+         font-size:15.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:9px;
+         transition:transform .18s cubic-bezier(.3,1.3,.5,1),background .3s}
+  .order:active{transform:scale(.985)}
+  .order.done{background:var(--ok);color:#03150E}
+  .again{display:block;width:100%;margin-top:10px;padding:13px;border-radius:14px;border:1px solid var(--edge-2);
+         font-size:13.5px;color:var(--txt-2);background:rgba(255,255,255,.02)}
+  .hint{margin:12px 0 0;font-size:11.5px;line-height:1.5;color:var(--txt-3);text-align:center}
+  .hint.warn{color:var(--warn)}
+
+  /* ---------- приглашение ---------- */
+  .invite{text-align:center;padding:0 6px}
+  .invite h2{margin:0 0 12px;font-size:clamp(26px,7vw,36px);line-height:1.05;font-weight:700;letter-spacing:-.04em;text-wrap:balance}
+  .invite p{margin:0 auto;max-width:34ch;font-size:14.5px;line-height:1.6;color:var(--txt-2);font-weight:300}
+
+  /* ---------- нижняя панель ---------- */
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));
+        background:linear-gradient(to top, rgba(6,6,11,.94) 55%, rgba(6,6,11,0))}
+  .dockin{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
+  .dockrow{display:flex;gap:8px;align-items:center}
+  .budget{flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:12px 14px;border-radius:18px;
+          border:1px solid var(--edge);background:rgba(255,255,255,.05);backdrop-filter:blur(20px);
+          font-family:"JetBrains Mono",monospace;font-size:11.5px;white-space:nowrap}
+  .budget em{font-style:normal;color:var(--txt-3);letter-spacing:.14em;text-transform:uppercase;font-size:9px}
+  .budget b{color:var(--accent);font-weight:500}
+  .budget svg{width:11px;height:11px;color:var(--txt-3);transition:transform .25s}
+  .budget[aria-expanded="true"] svg{transform:rotate(180deg)}
+  @media (max-width:430px){ .budget em{display:none} }
+  .ask{flex:1;min-width:0;display:flex;align-items:center;gap:6px;padding:5px 5px 5px 16px;border-radius:18px;
+       border:1px solid var(--edge);background:rgba(255,255,255,.05);backdrop-filter:blur(20px)}
+  .ask input{flex:1;min-width:0;border:0;background:transparent;padding:10px 0;font-size:16px;font-weight:300}
+  .ask input::placeholder{color:var(--txt-3)}
+  .send{width:38px;height:38px;flex:0 0 auto;border-radius:13px;background:#fff;color:#06060B;display:grid;place-items:center;
+        transition:transform .18s cubic-bezier(.3,1.4,.5,1),opacity .2s}
+  .send svg{width:16px;height:16px}
+  .send:active{transform:scale(.92)}
+  .send[disabled]{opacity:.4;pointer-events:none}
+
+  .budgetpanel{border:1px solid var(--edge);border-radius:20px;padding:16px 18px 14px;background:rgba(255,255,255,.05);backdrop-filter:blur(24px)}
+  .bphead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;
+          font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-3)}
+  .bphead b{color:var(--txt);font-weight:500;letter-spacing:.04em;font-size:12px;text-transform:none}
+  .dual{position:relative;height:26px;margin:0 12px}
+  .dual .track{position:absolute;top:11px;left:-12px;right:-12px;height:2px;border-radius:99px;background:rgba(255,255,255,.14)}
+  .dual .fill{position:absolute;top:11px;height:2px;border-radius:99px;background:linear-gradient(90deg,#4D7CFF,#9A5CFF)}
+  .dual input{position:absolute;top:0;left:-12px;width:calc(100% + 24px);height:26px;margin:0;-webkit-appearance:none;appearance:none;background:transparent;pointer-events:none}
+  .dual input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+  .dual input::-moz-range-thumb{pointer-events:auto;width:22px;height:22px;border-radius:50%;border:0;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+  .dual input::-moz-range-track{background:transparent;border:0}
+  .presets{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .preset{border:1px solid var(--edge-2);border-radius:999px;padding:6px 11px;font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--txt-2)}
+  .preset[aria-pressed="true"]{background:rgba(255,255,255,.12);border-color:var(--edge);color:var(--txt)}
+  .seeds{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .seeds::-webkit-scrollbar{display:none}
+  .seeds button{flex:0 0 auto;border:1px solid var(--edge-2);border-radius:999px;padding:6px 12px;font-size:11.5px;
+                color:var(--txt-2);font-weight:300;background:rgba(255,255,255,.03)}
+
+  .toast{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);z-index:90;
+         padding:11px 18px;border-radius:999px;font-size:13px;background:rgba(255,255,255,.95);color:#06060B;font-weight:500;
+         opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:88vw;text-align:center}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+
+  .fade{animation:fade .6s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+    .pour .liquid,.pour .foam{transform:translateY(22px)}
+  }
+</style>
+</head>
+<body>
+
+<div class="env">
+  <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+  <div class="grain"></div><div class="vignette"></div>
+</div>
+
+<div class="shell">
+  <header class="top">
+    <div class="mark"><i>С</i> Своя подача</div>
+    <div class="meta">Гуща · Рубинштейна</div>
+  </header>
+
+  <section class="scene" id="scene">
+    <!-- налив -->
+    <div id="pourbox">
+      <svg class="pour" viewBox="0 0 220 300" aria-hidden="true">
+        <defs>
+          <clipPath id="cupclip">
+            <path d="M62,78 L78,240 Q80,252 92,252 L128,252 Q140,252 142,240 L158,78 Z"/>
+          </clipPath>
+        </defs>
+        <path class="steamline" d="M96,58 c8,-12 -8,-22 0,-34"/>
+        <path class="steamline" d="M110,54 c8,-12 -8,-22 0,-34"/>
+        <path class="steamline" d="M124,58 c8,-12 -8,-22 0,-34"/>
+        <rect class="stream" x="106" y="6" width="8" height="66" rx="4"/>
+        <circle class="drop" cx="110" cy="70" r="4"/>
+        <circle class="drop" cx="110" cy="70" r="3"/>
+        <g clip-path="url(#cupclip)">
+          <rect class="inner" x="50" y="70" width="120" height="190"/>
+          <rect class="liquid" x="50" y="70" width="120" height="240"/>
+          <rect class="foam" x="50" y="70" width="120" height="12"/>
+        </g>
+        <path class="cup" d="M62,78 L78,240 Q80,252 92,252 L128,252 Q140,252 142,240 L158,78"/>
+        <ellipse class="rim" cx="110" cy="78" rx="48" ry="11"/>
+      </svg>
+      <div class="status">
+        <div class="line" id="statusline">наливаю</div>
+        <div class="progress" id="progress"><i></i></div>
+        <div class="sub" id="statussub"></div>
+      </div>
+    </div>
+
+    <!-- приглашение -->
+    <div class="invite fade" id="invite" hidden>
+      <h2>Опиши кофе, которого нет в меню</h2>
+      <p>Клуб, сериал, город, настроение или повод. Бариста соберёт напиток под это, придумает название и снимет фото.</p>
+    </div>
+
+    <!-- фото -->
+    <div id="shotbox" hidden style="width:100%;position:relative">
+      <div class="shotglow" id="shotglow"></div>
+      <div class="shot"><img id="shot" alt=""><div class="nophoto" id="nophoto" hidden></div></div>
+    </div>
+  </section>
+
+  <div id="result" hidden></div>
+</div>
+
+<div class="dock">
+  <div class="dockin">
+    <div class="budgetpanel" id="budgetpanel" hidden>
+      <div class="bphead"><b>Бюджет за порцию</b><span id="bpval">300 – 700 ₽</span></div>
+      <div class="dual">
+        <div class="track"><div class="fill" id="fill"></div></div>
+        <input type="range" id="pmin" min="150" max="1300" step="50" value="300" aria-label="Минимальная цена">
+        <input type="range" id="pmax" min="150" max="1300" step="50" value="700" aria-label="Максимальная цена">
+      </div>
+      <div class="presets" id="presets"></div>
+    </div>
+    <div class="dockrow">
+      <button class="budget" id="budgetbtn" type="button" aria-expanded="false">
+        <em>бюджет</em><b id="budgetval">300–700 ₽</b>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
+      </button>
+      <form class="ask" id="form">
+        <input id="q" type="text" placeholder="Опиши свой кофе" autocomplete="off" aria-label="Пожелание">
+        <button class="send" id="send" type="submit" aria-label="Сварить">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="seeds" id="seeds"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  const $ = s => document.querySelector(s);
+  const el = (t,c)=>{const e=document.createElement(t); if(c) e.className=c; return e;};
+  const money = n => Number(n).toLocaleString("ru-RU") + " ₽";
+
+  const SEEDS = ["Барселона","Дюна","Ночная смена","Тайга","Новый год","Дедлайн","Сакура","Воскресное утро","Свидание"];
+  SEEDS.forEach(t=>{
+    const b = el("button"); b.type="button"; b.textContent = t;
+    b.addEventListener("click", ()=>{ $("#q").value = t; brew(t); });
+    $("#seeds").appendChild(b);
+  });
+
+  /* ---------- бюджет ---------- */
+  const PRESETS = [[150,400],[400,700],[700,1000],[1000,1300]];
+  const price = {min:300, max:700};
+  const pmin = $("#pmin"), pmax = $("#pmax"), fill = $("#fill");
+  function paintRange(){
+    const lo = +pmin.min, hi = +pmin.max;
+    const a = (price.min-lo)/(hi-lo), b = (price.max-lo)/(hi-lo);
+    fill.style.left = "calc(" + (a*100) + "% - 12px)";
+    fill.style.width = ((b-a)*100) + "%";
+    $("#bpval").textContent = money(price.min) + " – " + money(price.max);
+    $("#budgetval").textContent = price.min + "–" + price.max + " ₽";
+    document.querySelectorAll(".preset").forEach((e2,i)=>{
+      e2.setAttribute("aria-pressed", String(PRESETS[i][0]===price.min && PRESETS[i][1]===price.max));
+    });
+  }
+  function onRange(){
+    let a = +pmin.value, b = +pmax.value;
+    if(a > b - 50){ if(document.activeElement === pmin) a = b - 50; else b = a + 50; pmin.value=a; pmax.value=b; }
+    price.min = a; price.max = b; paintRange();
+  }
+  pmin.addEventListener("input", onRange);
+  pmax.addEventListener("input", onRange);
+  PRESETS.forEach(pair=>{
+    const btn = el("button","preset"); btn.type="button";
+    btn.textContent = pair[1] >= 1300 ? "от "+pair[0] : pair[0]+"–"+pair[1];
+    btn.addEventListener("click", ()=>{ price.min=pair[0]; price.max=pair[1]; pmin.value=pair[0]; pmax.value=pair[1]; paintRange(); });
+    $("#presets").appendChild(btn);
+  });
+  $("#budgetbtn").addEventListener("click", ()=>{
+    const p = $("#budgetpanel"), open = p.hidden;
+    p.hidden = !open; $("#budgetbtn").setAttribute("aria-expanded", String(open));
+    if(open) requestAnimationFrame(paintRange);
+  });
+
+  /* ---------- состояния ---------- */
+  const scene = {
+    pour: $("#pourbox"), invite: $("#invite"), shot: $("#shotbox"), result: $("#result")
+  };
+  function show(state){
+    scene.pour.hidden   = state !== "pour";
+    scene.invite.hidden = state !== "invite";
+    scene.shot.hidden   = state !== "shot";
+    scene.result.hidden = state !== "shot";
+    $("#progress").style.visibility = state === "pour" ? "visible" : "hidden";
+  }
+
+  const STEPS = [
+    ["разбираю пожелание", "читаю тему и подбираю характер"],
+    ["собираю состав",     "только из того, что есть в кофейне"],
+    ["держу бюджет",       "считаю цену по каталогу"],
+    ["снимаю фото",        "это самая долгая часть, 10–30 секунд"]
+  ];
+  let stepTimer = null;
+  function runSteps(){
+    let i = 0;
+    const paint = ()=>{ $("#statusline").textContent = STEPS[i][0]; $("#statussub").textContent = STEPS[i][1]; };
+    paint();
+    stepTimer = setInterval(()=>{ i = Math.min(i+1, STEPS.length-1); paint(); }, 4200);
+  }
+  function stopSteps(){ clearInterval(stepTimer); stepTimer = null; }
+
+  /* ---------- результат ---------- */
+  function render(d){
+    document.documentElement.style.setProperty("--drink", pickTint(d));
+    const box = scene.result; box.innerHTML = "";
+
+    // фото
+    const img = $("#shot"), no = $("#nophoto");
+    img.classList.remove("on");
+    if(d.image){
+      no.hidden = true;
+      img.onload = ()=> img.classList.add("on");
+      img.alt = d.name;
+      img.src = d.image;
+    }else{
+      img.removeAttribute("src");
+      no.hidden = false;
+      no.textContent = "Фото не сгенерировалось: " + (d.imageError || "провайдер не ответил") +
+                       ". Напиток и цена собраны — можно заказывать.";
+    }
+
+    const head = el("div","idhead fade");
+    const tags = el("div","tags");
+    const mk = (cls,t)=>{ const s = el("span",cls); s.textContent = t; tags.appendChild(s); };
+    mk("tag lead", d.serveName);
+    mk("tag soft", d.volumeMl + " мл");
+    if(d.latteArt) mk("tag", "на пенке: " + d.latteArt);
+    if(d.overBudget) mk("tag warn", "выше бюджета");
+    const h = el("h1","name"); h.textContent = d.name;
+    const tl = el("p","tagline"); tl.textContent = d.tagline;
+    const st = el("p","story"); st.textContent = d.story;
+    head.append(tags, h, tl, st);
+    const w = el("p","wishline"); w.textContent = "по пожеланию: «" + d.wish + "»";
+    head.appendChild(w);
+    box.appendChild(head);
+
+    // состав
+    const p1 = el("section","panel fade");
+    const l1 = el("div","plabel"); l1.innerHTML = "<span>состав</span>";
+    const l1b = el("b"); l1b.textContent = d.vessel;
+    l1.appendChild(l1b); p1.appendChild(l1);
+    const chips = el("div","chips");
+    d.base.forEach(n=>{
+      const c = el("div","chip base");
+      const i = el("i"); i.style.background = "rgba(255,255,255,.4)"; i.style.color = "rgba(255,255,255,.4)";
+      const s = el("span"); s.textContent = n;
+      c.append(i,s); chips.appendChild(c);
+    });
+    d.ingredients.forEach(ing=>{
+      const c = el("div","chip");
+      const i = el("i"); i.style.background = ing.color || "var(--accent)"; i.style.color = ing.color || "var(--accent)";
+      const s = el("span"); s.textContent = ing.name;
+      const pr = el("s"); pr.textContent = "+" + ing.price;
+      c.append(i,s,pr); chips.appendChild(c);
+    });
+    p1.appendChild(chips);
+    if(d.dropped > 0){
+      const note = el("p","hint");
+      note.textContent = "Позиций вне каталога: " + d.dropped + " — отброшены сервером.";
+      p1.appendChild(note);
+    }
+    box.appendChild(p1);
+
+    // метрики
+    const p2 = el("section","panel fade");
+    const l2 = el("div","plabel"); l2.innerHTML = "<span>что в стакане</span>";
+    const l2b = el("b"); l2b.textContent = d.volumeMl + " мл";
+    l2.appendChild(l2b); p2.appendChild(l2);
+    const meters = el("div","meters");
+    [["m1","крепость", d.stats.caff + " мг", Math.min(1, d.stats.caff/260)],
+     ["m2","сладость", (d.stats.sweet||0) + " / 5", (d.stats.sweet||0)/5],
+     ["m3","плотность", d.stats.kcal + " ккал", Math.min(1, d.stats.kcal/420)]
+    ].forEach(r=>{
+      const m = el("div","meter " + r[0]);
+      const k = el("span","mk"); k.textContent = r[1];
+      const v = el("span","mv"); v.textContent = r[2];
+      const tr = el("div","track"); const f = el("div","fl"); f.style.width = Math.round(r[3]*100)+"%";
+      tr.appendChild(f); m.append(k,v,tr); meters.appendChild(m);
+    });
+    p2.appendChild(meters);
+    box.appendChild(p2);
+
+    // заказ
+    const p3 = el("section","panel fade");
+    const row = el("div","pricerow");
+    const pr = el("div","price"); pr.textContent = money(d.price);
+    const lab = el("div","plabel"); lab.style.margin = "0";
+    lab.innerHTML = "<span>итого</span>";
+    row.append(pr);
+    p3.append(row);
+    const order = el("button","order"); order.textContent = "Отправить баристе";
+    order.addEventListener("click", ()=>{
+      order.classList.add("done"); order.textContent = "Принято ✓";
+      toast("Рецепт ушёл в «Гущу» · готово через 6 минут");
+      setTimeout(()=>{ order.classList.remove("done"); order.textContent = "Отправить баристе"; }, 2600);
+    });
+    p3.appendChild(order);
+    const again = el("button","again"); again.textContent = "Собрать другой";
+    again.addEventListener("click", ()=>{ $("#q").value = ""; $("#q").focus(); show("invite"); });
+    p3.appendChild(again);
+    const hint = el("p","hint");
+    hint.textContent = "Бюджет " + money(d.budget.min) + " – " + money(d.budget.max) +
+                       (d.ms ? " · собрано за " + (d.ms/1000).toFixed(1) + " с" : "");
+    p3.appendChild(hint);
+    box.appendChild(p3);
+
+    show("shot");
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  function pickTint(d){
+    const first = (d.ingredients || []).find(i => i.color);
+    return first ? first.color : "#C9884F";
+  }
+
+  /* ---------- запрос ---------- */
+  let busy = false;
+  async function brew(text){
+    if(busy) return;
+    const wish = String(text || "").trim();
+    if(!wish){ $("#q").focus(); return; }
+    $("#q").value = wish;
+    if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    busy = true; $("#send").disabled = true;
+    $("#budgetpanel").hidden = true; $("#budgetbtn").setAttribute("aria-expanded","false");
+    show("pour"); runSteps();
+
+    try{
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: {"content-type":"application/json"},
+        body: JSON.stringify({ wish, min: price.min, max: price.max })
+      });
+      const data = await res.json().catch(()=> ({}));
+      if(!res.ok) throw new Error(data.error || ("Сервер ответил " + res.status));
+      render(data);
+    }catch(e){
+      show("invite");
+      toast(String(e.message || e).slice(0,120));
+      console.error(e);
+    }finally{
+      stopSteps(); busy = false; $("#send").disabled = false;
+    }
+  }
+  $("#form").addEventListener("submit", e=>{ e.preventDefault(); brew($("#q").value); });
+
+  let tt = null;
+  function toast(msg){
+    const t = $("#toast"); t.textContent = msg; t.classList.add("on");
+    clearTimeout(tt); tt = setTimeout(()=> t.classList.remove("on"), 3600);
+  }
+
+  /* ---------- старт: короткий налив, затем приглашение ---------- */
+  paintRange();
+  show("pour");
+  $("#statusline").textContent = "своя подача";
+  $("#statussub").textContent = "";
+  $("#progress").style.visibility = "hidden";
+  setTimeout(()=>{ show("invite"); }, 2200);
+})();
+</script>
+</body>
+</html>
